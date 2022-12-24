@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="../css/style.css">
+<title>우리세상</title>
+</head>
+<body>
+
+<div id="wrap" class="wrap-content view-content">
+  <section class="form-box">
+    <div class="formik-header">
+      <div class="img-box">
+        <img src="../img/image/card.png" alt="" id="form-img" width="100%" height="100%">
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-10">
+          <div class="row">
+            <div class="col-12 flex" style="justify-content:flex-start;">
+              <span id="viewName">구본승</span>
+              <input type="checkbox" id="viewStar" class="stars">
+              <label for="viewStar">star</label>
+            </div>
+          </div>
+          <div class="row" style="justify-content:flex-start;">
+            <div class="col-12">
+              <span id="viewTeam">SI팀 / 과장</span>
+              <span id="viewCompany">(주) 씨스맥</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <button type="button" class="edit" style="padding:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="41px">
+              <image x="5px" y="0px" width="40px" height="41px" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAMAAABwfJv6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA3lBMVEUAAACUlJX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACTk5STk5SSkpORkZGPj5CPj5CSkpORkZKUlJWTk5SSkpOUlJWUlJWTk5STk5SUlJWTk5SUlJWUlJWUlJWUlJWUlJWTk5SUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJXf39+tra3R0dKlpaX5+fn////Dw8TY2Nny8vOcnJ20tLXs7Oy8vLzKystDHCW7AAAAO3RSTlMAAAABBw0TFxkaBA8YAxEKAhQOBvru1rB9fDk4AuWJHPmWmBPtWFqYmQayCra0BetZFJeI5Dd5rNLu+oPmLCsAAAABYktHRAJmC3xkAAAAB3RJTUUH5gwJDRwsaEZSWQAAAa1JREFUOMuNknd7gjAQxi9Vkagg4urA0Wpr1Vbr3iO2YPv9v1CDMg4xPrz8k9z9chMArFg8ISVlSuWklIjHQKRUOkORMunUVUxRaUiqEuayMr0iOXuBxVQqkBooVctRoXIaineD46QfU6U3pXp9BMrX85qW1wOtOR0p2Cg5FWkSfqyEEkt+4dJl8hR+ijrUcCJ7R2l01/HMdORI89Hg/eYxmMd7j0Ect6dhUMOeOCSigYlAc+LUfBxJfBU2Q5MQWIFwPFSG4FoFA+eCwiqSCtHBYjSwCKWQbb1xDtudbyxBGSF7xrVjhxVzD57KcI/AHdvyz/afIAw+wCPOyg52OO7/Zj9mAHwCoxIE7YjmmlnH/S8CKwaQKuJs2UHX1srcmseN56kCkFrdr9H6W51Ls5h9sFxHvcZB8uyHPDBnPIdzcNf+AjbYaCJww2U6Lzyw2TiB5NUDrVOgrXtwU7/BGSSt2+t7Bxdsd25xnbYHku6HmPvsgg+SnjB7qwcY5B31r2H9L++Pd0EyGNYvsfpwAGGQkNpojLHxqEbgKkiIMZnO5ovlcjGfTScGN9x5+gfFubL240Lv7AAAAABJRU5ErkJggg=="></image>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+
+        </div>
+      </div>
+    </div>
+</div>
+<!-- 신규 -->
+<!-- <div class="popup" id="new-popup">
+  <div class="popup-content">
+    <div class="popup-header">
+      <h5 class="modal-title">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="28px" height="20px">
+          <path fill-rule="evenodd"  fill="rgb(39, 39, 39)"
+          d="M22.538,14.492 L21.641,12.061 C23.438,11.378 24.646,9.614 24.646,7.670 C24.646,5.082 22.572,2.977 20.023,2.977 C18.294,2.977 16.724,3.948 15.924,5.510 C15.877,5.607 15.688,6.056 15.649,6.165 L15.612,6.263 L15.411,6.733 L14.053,9.998 L11.698,8.988 L13.252,5.266 C13.348,5.000 13.579,4.466 13.655,4.316 C14.897,1.888 17.337,0.382 20.023,0.382 C23.982,0.382 27.202,3.651 27.202,7.670 C27.202,10.690 25.327,13.431 22.538,14.492 ZM19.070,5.745 L21.845,5.745 L16.013,19.552 L12.770,19.552 L11.320,16.119 L9.870,19.552 L6.627,19.552 L0.795,5.745 L3.602,5.745 L8.249,16.993 L9.933,12.942 L9.978,12.942 L6.938,5.745 L9.745,5.745 L14.392,16.993 L19.070,5.745 Z"/>
+        </svg>
+      </h5>
+      <h6>02-6114-2827</h6>
+      <button type="button" class="close">
+        <svg 
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="14px" height="14px">
+          <image  x="0px" y="0px" width="14px" height="14px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAUOHTFayw4gAAAAlklEQVQY033QIQ7CQBCF4W8XiahHcgBkBQbTrEb3IEhED1PDDRpMbW/TBAQJAkPa3ZAwajJ/8ubPC83F1ag1W6fSO+lC87DFJC24MqjxjEZQG1QFYoxaU4ZXNGlDozhYtmQOTRllRUQwS99wuVz0Z6Lf2MU8KoVyc7FAafldG1RRn8tnarX+b32b/dvR3Tkr/uXmYKf7AP1ON75aDfuoAAAAAElFTkSuQmCC" />
+        </svg>
+      </button>
+    </div>
+    <div class="popup-body">
+      <img src="../img/image/card.png" alt="" width="300" height="166">
+      <div class="content">
+        <p>구본준</p>
+        <small><span>과장</span> / <span>SI</span>팀  <span>(주)씨스맥</span></small>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- 기존 -->
+<!-- <div class="popup" id="save-popup">
+  <div class="popup-content">
+    <div class="popup-header">
+      <h5 class="modal-title">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="28px" height="20px">
+          <path fill-rule="evenodd"  fill="rgb(39, 39, 39)"
+          d="M22.538,14.492 L21.641,12.061 C23.438,11.378 24.646,9.614 24.646,7.670 C24.646,5.082 22.572,2.977 20.023,2.977 C18.294,2.977 16.724,3.948 15.924,5.510 C15.877,5.607 15.688,6.056 15.649,6.165 L15.612,6.263 L15.411,6.733 L14.053,9.998 L11.698,8.988 L13.252,5.266 C13.348,5.000 13.579,4.466 13.655,4.316 C14.897,1.888 17.337,0.382 20.023,0.382 C23.982,0.382 27.202,3.651 27.202,7.670 C27.202,10.690 25.327,13.431 22.538,14.492 ZM19.070,5.745 L21.845,5.745 L16.013,19.552 L12.770,19.552 L11.320,16.119 L9.870,19.552 L6.627,19.552 L0.795,5.745 L3.602,5.745 L8.249,16.993 L9.933,12.942 L9.978,12.942 L6.938,5.745 L9.745,5.745 L14.392,16.993 L19.070,5.745 Z"/>
+        </svg>
+      </h5>
+      <h6>02-6114-2827</h6>
+      <button type="button" class="close">
+        <svg 
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="14px" height="14px">
+          <image  x="0px" y="0px" width="14px" height="14px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAUOHTFayw4gAAAAlklEQVQY033QIQ7CQBCF4W8XiahHcgBkBQbTrEb3IEhED1PDDRpMbW/TBAQJAkPa3ZAwajJ/8ubPC83F1ag1W6fSO+lC87DFJC24MqjxjEZQG1QFYoxaU4ZXNGlDozhYtmQOTRllRUQwS99wuVz0Z6Lf2MU8KoVyc7FAafldG1RRn8tnarX+b32b/dvR3Tkr/uXmYKf7AP1ON75aDfuoAAAAAElFTkSuQmCC" />
+        </svg>
+      </button>
+    </div>
+    <div class="popup-footer">
+      <button type="button" class="button button-primary">명함추가</button>
+      <button type="button" class="button button-secondary">취소</button>
+    </div>
+  </div>
+</div> -->
+
+</body>
+</html>
+
+
