@@ -1,0 +1,24 @@
+{
+  "name": "design-003",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/office4sea/design-003.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/office4sea/design-003/issues"
+  },
+  "homepage": "https://github.com/office4sea/design-003#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
