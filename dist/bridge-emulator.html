@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에뮬레이터</title>
+    <script src="../libs/bada.js"></script>
+    <style>
+    #navigator {
+        padding: .4rem;
+    }
+    #bridge-native {
+        display: none;
+    }
+    #bridge-web {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <h2>브릿지 에뮬레이터</h2>
+
+    <div id="navigator">
+        <button data-vo="debug-mode">디버깅 모드</button>
+        <button data-vo="bridge-native">브릿지 네이티브</button>
+        <button data-vo="bridge-web">브릿지 웹</button>
+    </div>
+
+    <div id="bridge-native">
+        <select style="width: 100%;">
+            <option value="">브릿지 네이티브</option>
+        </select>
+        <textarea style="margin-top:.2rem; width:100%; height:10rem;"></textarea>
+        <div>
+            <button>저장</button>
+            <button>불러오기</button>
+            <button>기본 양식</button>
+            <button>오류 양식</button>
+        </div>
+    </div>
+
+    <div id="bridge-web">
+        <select style="width: 100%;">
+            <option value="">브릿지 웹</option>
+        </select>
+    </div>
+
+    <script src="bridge-emulator.js"></script>
+</body>
+</html>
