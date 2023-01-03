@@ -25,10 +25,13 @@ bada.binder('nav-bar', binder=> {
 // 브릿지 네이티브
 bada.binder('bridge-native', binder=> {
     const logger = bada.logger(binder.name);
+    const getJsonData = _=> {
+        const {commnads, receiveData} = binder.vo;
+        if(!commnads.value) return alert('브릿지 종류 미선택'), undefined;
+        if(!receiveData.value) return alert('입력값 없음'), undefined;
 
-    // 닫기
-    const {vo:{close}} = binder;
-    close.event('click', _=> binder.hide());
+        return JSON.parse(receiveData.value);
+    };
 
     // 브릿지 목록
     const {vo:{commnads, receiveData}} = binder;
@@ -38,6 +41,29 @@ bada.binder('bridge-native', binder=> {
 
         receiveData.value = JSON.stringify(stubBridge.readMessage(commnads.value), '', '  ');
     });
+
+    // 저장
+    const {vo:{save}} = binder;
+    save.event('click', _=> {
+        const json = getJsonData();
+        if(!json) return;
+
+        stubBridge.writeMessage(commnads.value, json);
+        alert('저장');
+    });
+    
+    // 오류값 추가
+    const {vo:{addError}} = binder;
+    addError.event('click', _=> {
+        const json = getJsonData();
+        if(!json) return;
+
+        receiveData.value = JSON.stringify(Object.assign(json, {error: {}}), '', '  ');
+    });
+
+    // 닫기
+    const {vo:{close}} = binder;
+    close.event('click', _=> binder.hide());
 
     /**@override */
     binder.show=_=> {

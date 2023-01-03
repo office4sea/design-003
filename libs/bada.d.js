@@ -43,6 +43,7 @@
  * @property {string} StorageItem.str 스트링
  * @property {string} StorageItem.json JSON 객체
  * @property {()=> void} StorageItem.remove 항목 삭제
+ * @property {()=> boolean} StorageItem.isEmpty 값존재 여부 확인
  */
 
 // ===== 로깅 =====
