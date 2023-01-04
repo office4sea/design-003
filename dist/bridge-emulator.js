@@ -73,7 +73,7 @@ bada.binder('bridge-native', binder=> {
         if(commnads.children.length > 1) return;
 
         stubBridge.getMessages()
-        .forEach(value=> commnads.appendChild(
+        .forEach(([value])=> commnads.appendChild(
             binder.getTemplate('option-item', item=> Object.assign(item, {value, text: value}))
         ));
     };
