@@ -48,14 +48,14 @@
 
 // ===== 로깅 =====
 /**
- * @typedef {'debug'|'info'|'warn'|'error'} LoggerLevels 출력할 로그 레벨 debug> info> warn> error
+ * @typedef {0|1|2|3} LoggerLevels 출력할 로그 레벨 0-미사용 > 1-debug > 2-info > 3-warn > error
  * 
  * @typedef {object} Logger
- * @property {void} LoggerItem.trace 스택 브레이크
- * @property {(...arg: any)=> void} LoggerItem.debug 디버그 로그 출력
- * @property {(...arg: any)=> void} LoggerItem.info 정보 로그 출력
- * @property {(...arg: any)=> void} LoggerItem.warn 경고 로그 출력
- * @property {(...arg: any)=> void} LoggerItem.error 오류 로그 출력
+ * @property {void} Logger.break 스택 브레이크
+ * @property {(...arg: any)=> void} Logger.debug 디버그 로그 출력
+ * @property {(...arg: any)=> void} Logger.info 정보 로그 출력
+ * @property {(...arg: any)=> void} Logger.warn 경고 로그 출력
+ * @property {(...arg: any)=> void} Logger.error 오류 로그 출력
  */
 
 // ===== 엘리먼트 바인더 =====
@@ -91,13 +91,16 @@
 
 // ===== 네이티브 브릿지 =====
 /**
- * @typedef {BridgeInterface & {[k: string]: (param: any)=> Promise<any>}} Bridge 네이티브 브릿지
+ * @typedef {BridgeInterface & {(nativeName: string): Bridge, [k: string]: (param: any)=> Promise<any>}} Bridge 네이티브 브릿지
  * 
  * @typedef {object} BridgeInterface 브릿지 인터페이스
+ * @property {boolean=} BridgeInterface.isWeb 웹 브라우저
+ * @property {boolean=} BridgeInterface.isAos 안드로이드
+ * @property {boolean=} BridgeInterface.isIos IOS
  * @property {()=> BridgeStub} BridgeInterface.getStub 브릿지 스터빙 객체
  * @property {(command: string, param?: object)=> Promise<any>} BridgeInterface.postMessage 브릿지 메시지 전달
  * @property {(command: string, payload?: object, receive?: object)=> Bridge} BridgeInterface.setMessage 브릿지 메시지 등록
- * @property {(command: string, listener: (param: any)=> void)=> Bridge} BridgeInterface.addEventListener 브릿지 이벤트 리스너 등록
+ * @property {(eventType: string, listener: (param: any)=> void)=> Bridge} BridgeInterface.addEventListener 브릿지 이벤트 리스너 등록
  * 
  * @typedef {object} BridgeStub 브릿지 스텁
  * @property {()=> void} BridgeStub.clearMessages 메시지 커맨드 비우기
@@ -105,26 +108,19 @@
  * @property {(command: string)=> BridgeMessageBody} BridgeStub.readMessage 메시지 결과 더미값 반환
  * @property {(command: string, result?: object, error?:object)=> void} BridgeStub.writeMessage 메시지 결과 더미값 반환
  * 
+ * @typedef {object} BridgeMessage 브릿지 메시지
+ * @property {BridgeMessageHead} BridgeMessage.head 헤드
+ * @property {BridgeMessageBody} BridgeMessage.body 바디
+ * 
+ * @typedef {object} BridgeMessageHead 브릿지 메시지 헤드
+ * @property {string} BridgeMessageHead.trid 트렌젝션 아이디
+ * @property {string} BridgeMessageHead.command 요청 명령어
+ * 
  * @typedef {object} BridgeMessageBody 브릿지 메시지 바디
  * @property {object=} BridgeMessageBody.error 오류
  * @property {object=} BridgeMessageBody.payload 메시지 요청 데이터
  * @property {object=} BridgeMessageBody.result 메시지 응답 데이터
  */
-
-// /**
-//  * @typedef {object} Bridge 네이티브 브릿지
-//  * @property {(command: string, payload: any)=> Promise<any>} Bridge.postMessage 네이티브에 수행 명령에 대한 메시지 요청
-//  * @property {(command: string, struct: {payload: any, receive: any})=> Bridge} Bridge.addCommand 네이티브에서 수행 할 명령어 등록
-//  * @property {(command: string, listener: (receive: any)=> void)=> Bridge} Bridge.addEventListener 네이티브로 부터 호출 될 이벤트 리스너 등록
-//  * 
-//  * @typedef {{header: BridgeMessageHeader, body: any}} BridgePostMessage 브릿지 요청 메시지
-//  * 
-//  * @typedef {{header: BridgeMessageHeader, body: {result?: any, error?: any}}} BridgeReceiveMessage 브릿지 요청 결과 메시지
-//  * 
-//  * @typedef {object} BridgeMessageHeader 브릿지 요청 메시지 헤더
-//  * @property {string} BridgeMessageHeader.trid 트렌젝션 아이디
-//  * @property {string} BridgeMessageHeader.command 수행 명령
-//  */
 
 /**
  * 웹 어플리케이션

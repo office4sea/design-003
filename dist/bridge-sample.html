@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../libs/bada.js"></script>
+    <script src="../libs/bada-bridge.js"></script>
+    <style>
+    .block-list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-flow: wrap;
+        gap: .5rem;
+    }
+    .block-list> li {
+        position: relative;
+        list-style: none;
+    }
+    .block-list> li> div {
+        position: absolute;
+        left: 0;
+        margin-top: .4rem;
+    }
+    .block-list> li> div> textarea {
+        display: none;
+    }
+    .block-list> li> div> textarea.on {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <h2>브릿지 샘플</h2>
+    <section id="sample-form1">
+        <div class="block-list">
+            <button data-vo="bridge-once">브릿지 단건</button>
+            <button data-vo="bridge-multi">브릿지 다건</button>
+            <button data-vo="bridge-chain">브릿지 체인</button>
+            <button data-vo="bridge-error">미등록 브릿지</button>
+        </div>
+
+        <div>
+            <strong>send</strong>
+            <textarea data-vo="send" rows="5" style="width:100%;"></textarea>
+            <strong>receive</strong>
+            <textarea data-vo="receive" rows="5" style="width:100%;"></textarea>
+        </div>
+
+        <strong>등록 브릿지 목록</strong>
+        <ul data-vo="bridge-list" class="block-list">
+            <li data-template="bridge-item">
+                <button data-vo="toggle">getdata</button>
+                <div>
+                    <textarea data-vo="structure" cols="30" rows="10"></textarea>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section id="sample-form1">
+        <h2>역브릿지 이벤트 샘플</h2>
+    </section>
+
+    <script src="bridge-sample.js"></script>
+</body>
+</html>
