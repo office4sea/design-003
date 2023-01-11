@@ -38,9 +38,9 @@ bada.bridge
     })
     .addEventListener('keyup', v=> {
         console.log('-----keyup-----', v);
-        v.resolve();
     })
 
+// bada.bridge.mockEvent('keyup')
 
 // bada.bridge('badaNative')
 //     .setMessage('cmdSample1')

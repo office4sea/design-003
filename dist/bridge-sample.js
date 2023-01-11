@@ -1,7 +1,9 @@
 bada.bindHtml('sample-bridge', binder=> {
-    const {bridge} = bada;
+    const {bridge, utils} = bada;
     const logger = bada.logger(binder.id);
     const {vo:{payload, receive}} = binder;
+
+    const toJson = v=> utils.isString(v) ? v : JSON.stringify(v, '', '  ');
 
     // 등록 된 브릿지 세팅
     const {vo:{bridgeMessages}} = binder;
@@ -32,6 +34,7 @@ bada.bindHtml('sample-bridge', binder=> {
         const {text} = selectedBridge
         if(/=== selected ===/.test(text)) return alert('브릿지 미선택');
 
+        bada.logger.break;
         const param = payload.value ? JSON.parse(payload.value) : undefined;
         logger.out('param', param);
 
@@ -39,17 +42,18 @@ bada.bindHtml('sample-bridge', binder=> {
         bridge.postMessage(text, param)
             .then(result=> {
                 logger.out('전송 결과', result);
-                receive.value = (typeof result == 'string') ? result : JSON.stringify(result, '', '  ');
+                receive.value = toJson(result);
             })
             .catch(reason=> {
                 logger.error('오류', reason);
             });
     });
 
+    // 네이티브 이벤트 등록
     bada.bridge
-    .addEventListener('keyup', v=> {
-        logger.debug('keyup event', v);
-        v.resolve();
+    .addEventListener('keyup', param=> {
+        logger.out('keyup event', param);
+        receive.value = toJson(param);
     });
 });
 
