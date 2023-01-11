@@ -88,18 +88,23 @@
  * @typedef {IAppBridge & {(native: string)=> void, [bridge: string]: (param: any)=> Promise<any>}} AppBridge
  * @typedef {object} IAppBridge
  * @property {'hpg'|'mob'|'aos'|'ios'} osType hpt-데스크탑, mob-모바일, aos-안드로이드, ios-아이폰
- * @property {AppBridgeMock} mock 브릿지 mock 객체
  * @property {(type: string, body: AppBridgeMessageBody)=> AppBridge} addMessage 메시지 설정 등록
  * @property {()=> Array<[message: string, body:AppBridgeMessageBody]>} getMessages 등록된 메시지 목록
  * @property {(type: string, param?: any)=> Promise} postMessage 메시지 요청
  * @property {(type: string, listener: (param?: any)=> void)=> AppBridge} addEventListener 이벤트 리스너 등록
+ * @property {()=> Array<string>} getEvents 등록된 이벤트 목록
+ * @property {(type: string)=> void} eventMocking 이벤트 모깅
+ * @property {AppBridgeMock} mock 브릿지 mock 객체
+ * 
  * 
  * @typedef {object} AppBridgeMock
  * @property {()=> void} clearMessages 메시지 정리
- * @property {(message: string, body?: AppBridgeMessageBody)=> void} addMessage 모깅 메시지 등록
- * @property {()=> Array<[message: string, body:AppBridgeMessageBody]>} getMessages 등록된 메시지 목록
+ * @property {(message: string, body?: AppBridgeMessageBody)=> void} addMessage 모깅을 위한 메시지 등록
  * @property {(message: string)=> AppBridgeMessageBody} readMessageBody 메시지 바디 조회
  * @property {(message: string, body?: AppBridgeMessageBody)=> void} writeMessageBody 메시지 바디 저장
+ * @property {(type: string)=> void} addEvent 모깅을 위한 이벤트 등록
+ * @property {(type: string)=> AppBridgeMessageBody} readEventBody 이벤트 바디 조회
+ * @property {(type: string, body?: AppBridgeMessageBody)=> void} writeEventBody 이벤트 바디 저장
  * 
  * @typedef {object} AppBridgeMessage 브릿지 메시지
  * @property {AppBridgeMessageHead} head 헤드
@@ -107,7 +112,7 @@
  * 
  * @typedef {object} AppBridgeMessageHead 메시지 헤드
  * @property {string} type 메시지 종류
- * @property {string} trid 트렌젝션 아이디
+ * @property {string=} trid 트렌젝션 아이디
  * 
  * @typedef {object} AppBridgeMessageBody 메시지 바디
  * @property {object=} error 오류
