@@ -46,6 +46,7 @@ bada.bindHtml('sample-bridge', binder=> {
             })
             .catch(reason=> {
                 logger.error('오류', reason);
+                receive.value = '====error====\n' + toJson(reason);
             });
     });
 
