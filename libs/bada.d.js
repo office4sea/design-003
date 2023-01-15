@@ -99,7 +99,7 @@
  * 
  * @typedef {object} AppBridgeMock
  * @property {()=> void} clearMessages 메시지 정리
- * @property {(message: string, body?: AppBridgeMessageBody)=> void} addMessage 모깅을 위한 메시지 등록
+ * @property {(tyle: string)=> void} addMessage 모깅을 위한 메시지 등록
  * @property {(message: string)=> AppBridgeMessageBody} readMessageBody 메시지 바디 조회
  * @property {(message: string, body?: AppBridgeMessageBody)=> void} writeMessageBody 메시지 바디 저장
  * @property {(type: string)=> void} addEvent 모깅을 위한 이벤트 등록

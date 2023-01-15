@@ -1,82 +1,91 @@
-// 버튼 그룹
-bada.binder('nav-bar', binder=> {
-    const logger = bada.logger(binder.name);
+bada.bindHtml('bridge-emulator', binder=> {
+    const {bridge, utils} = bada;
+    const logger = bada.logger(binder.id);
+    const toJson = v=> utils.isString(v) ? v : JSON.stringify(v, '', '  ');
 
-    // 디버깅 모드 전환
-    const {debugMode} = binder.vo;
-    debugMode.text = bada.logger.level ? '디버깅 비활성화' : '디버깅 활성화';
-    debugMode.event('click', _=> {
-        bada.logger.level = bada.logger.level ? '' : 'debug';
-        location.reload();
+    const {vo:{saveData}} = binder;
+
+    // 등록 된 이벤트 세팅
+    const {vo:{eventList}} = binder;
+    bridge.getEvents().forEach(type=> {
+        const item = eventList.appendChild(binder.getTemplate('event-item'));
+        item.setText({type});
+        item.vo.type.event('click', _=> {
+            eventType.text = type;
+            eventType.addClass('on')
+            messageType.text = '=== 브릿지 메시지 ===';
+            messageType.removeClass('on');
+            eventList.removeClass('on');
+
+            if(bridge.mock) {
+                saveData.value = toJson(bridge.mock.readEventBody(type));
+            }
+        });
     });
 
-    // 브릿지 네이티브
-    const {bridgeNative} = binder.vo;
-    bridgeNative.event('click', _=> {
-        bada.binder.bridgeNative.show();
+    // 이벤트 선택
+    const {vo:{eventType}} = binder;
+    eventType.event('click', _=> {
+        if(eventList.hasClass('on')) eventList.removeClass('on');
+        else {
+            eventList.addClass('on');
+        }
     });
 
-    // 역브릿지(네이티브 -> 웹)
-    const {bridgeWeb} = binder.vo;
-    bridgeWeb.event('click', _=> {
-    });
-});
+    // 이벤트 저장
+    const {vo:{eventSave}} = binder;
+    eventSave.event('click', _=> {
+        const type = eventType.text;
+        if(/^===(?:.*)===$/.test(type)) return alert('이벤트 미선택');
 
-// 브릿지 네이티브
-bada.binder('bridge-native', binder=> {
-    const logger = bada.logger(binder.name);
-    const getJsonData = _=> {
-        const {commnads, receiveData} = binder.vo;
-        if(!commnads.value) return alert('브릿지 종류 미선택'), undefined;
-        if(!receiveData.value) return alert('입력값 없음'), undefined;
+        const param = saveData.value ? JSON.parse(saveData.value) : undefined;
+        logger.out('param', param);
 
-        return JSON.parse(receiveData.value);
-    };
-
-    // 브릿지 목록
-    const {vo:{commnads, receiveData}} = binder;
-    const stubBridge = bada.bridge.getStub();
-    commnads.event('change', _=> {
-        if(!commnads.value) return;
-
-        receiveData.value = JSON.stringify(stubBridge.readMessage(commnads.value), '', '  ');
+        if(bridge.mock) {
+            bridge.mock.writeEventBody(type, param);
+        }
     });
 
-    // 저장
-    const {vo:{save}} = binder;
-    save.event('click', _=> {
-        const json = getJsonData();
-        if(!json) return;
+    // ===== 메시지 ====
 
-        stubBridge.writeMessage(commnads.value, json);
-        alert('저장');
+    // 등록 된 메시지 세팅
+    const {vo:{messageList}} = binder;
+    bridge.getMessages().forEach(([type])=> {
+        const item = messageList.appendChild(binder.getTemplate('event-item'));
+        item.setText({type});
+        item.vo.type.event('click', _=> {
+            messageType.text = type;
+            messageType.addClass('on')
+            eventType.text = '=== 브릿지 이벤트 ===';
+            eventType.removeClass('on')
+            messageList.removeClass('on');
+
+            if(bridge.mock) {
+                saveData.value = toJson(bridge.mock.readMessageBody(type));
+            }
+        });
     });
-    
-    // 오류값 추가
-    const {vo:{addError}} = binder;
-    addError.event('click', _=> {
-        const json = getJsonData();
-        if(!json) return;
 
-        receiveData.value = JSON.stringify(Object.assign(json, {error: {}}), '', '  ');
+    // 메시지 선택
+    const {vo:{messageType}} = binder;
+    messageType.event('click', _=> {
+        if(messageList.hasClass('on')) messageList.removeClass('on');
+        else {
+            messageList.addClass('on');
+        }
     });
 
-    // 닫기
-    const {vo:{close}} = binder;
-    close.event('click', _=> binder.hide());
+    // 메시지 저장
+    const {vo:{messageSave}} = binder;
+    messageSave.event('click', _=> {
+        const type = messageType.text;
+        if(/^===(?:.*)===$/.test(type)) return alert('메시지 미선택');
 
-    /**@override */
-    binder.show=_=> {
-        // ui 노출
-        binder.addClass('active');
-        logger.debug('--브릿지 건수--', commnads.children.length - 1);
-        if(commnads.children.length > 1) return;
+        const param = saveData.value ? JSON.parse(saveData.value) : undefined;
+        logger.out('param', param);
 
-        stubBridge.getMessages()
-        .forEach(([value])=> commnads.appendChild(
-            binder.getTemplate('option-item', item=> Object.assign(item, {value, text: value}))
-        ));
-    };
-    /**@override */
-    binder.hide=_=>binder.removeClass('active');
+        if(bridge.mock) {
+            bridge.mock.writeMessageBody(type, param);
+        }
+    });
 });
