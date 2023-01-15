@@ -1,4 +1,20 @@
-bada.bindHtml('sample-bridge', binder=> {
+bada.bindHtml('nav-bar', binder=> {
+    const {vo:{sample}} = binder;
+    sample.event('click', _=> {
+        const {bindHtml:{bridgeSample, bridgeEmulator}} = bada;
+        sample.addClass('on'), bridgeSample.removeClass('hidden');
+        emulator.removeClass('on'), bridgeEmulator.addClass('hidden');
+    });
+
+    const {vo:{emulator}} = binder;
+    emulator.event('click', _=> {
+        const {bindHtml:{bridgeSample, bridgeEmulator}} = bada;
+        sample.removeClass('on'), bridgeSample.addClass('hidden');
+        emulator.addClass('on'), bridgeEmulator.removeClass('hidden');
+    });
+});
+
+bada.bindHtml('bridge-sample', binder=> {
     const {bridge, utils} = bada;
     const logger = bada.logger(binder.id);
     const {vo:{payload, receive}} = binder;
@@ -8,12 +24,12 @@ bada.bindHtml('sample-bridge', binder=> {
     // 등록 된 브릿지 세팅
     const {vo:{bridgeMessages}} = binder;
     bridge.getMessages()
-        .forEach(([text, {payload:v}])=> {
-            const value = JSON.stringify(v, '', '  ') || '';
+        .forEach(([text, vl])=> {
+            const value = JSON.stringify(vl, '', '  ') || '';
             bridgeMessages.appendChild(binder.getTemplate('message-item', ({vo:{message}})=> {
                 Object.assign(message, {text}).event('click', _=>{
-                    Object.assign(payload, {value});
-                    Object.assign(selectedBridge, {text});
+                    payload.value = value;
+                    selectedBridge.text = text;
                     bridgeMessages.removeClass('on');
                 });
             }));
@@ -32,9 +48,8 @@ bada.bindHtml('sample-bridge', binder=> {
     const {vo:{send}} = binder;
     send.event('click', _=> {
         const {text} = selectedBridge
-        if(/=== selected ===/.test(text)) return alert('브릿지 미선택');
+        if(/^===(?:.*)===$/.test(text)) return alert('브릿지 미선택');
 
-        bada.logger.break;
         const param = payload.value ? JSON.parse(payload.value) : undefined;
         logger.out('param', param);
 
@@ -43,10 +58,12 @@ bada.bindHtml('sample-bridge', binder=> {
             .then(result=> {
                 logger.out('전송 결과', result);
                 receive.value = toJson(result);
+                receive.style.color = 'black';
             })
             .catch(reason=> {
                 logger.error('오류', reason);
-                receive.value = '====error====\n' + toJson(reason);
+                receive.value = toJson(reason);
+                receive.style.color = 'red';
             });
     });
 
@@ -57,4 +74,3 @@ bada.bindHtml('sample-bridge', binder=> {
         receive.value = toJson(param);
     });
 });
-

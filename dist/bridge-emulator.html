@@ -4,65 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>에뮬레이터</title>
+    <title>브릿지 에뮬레이터</title>
+    <link rel="stylesheet" href="bridge.css">
     <script src="../libs/bada.js"></script>
     <script src="../libs/bada-bridge.js"></script>
-    <style>
-    #navigator {
-        padding: .4rem;
-    }
-    #bridge-native {
-        display: none;
-        position: absolute;
-        justify-content: center;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,.2);
-    }
-    #bridge-native.active {
-        display: flex;
-    }
-    #bridge-native> div {
-        width: 90%;
-        height: 90%;
-        margin-top: 1rem;
-    }
-    #bridge-web {
-        display: none;
-    }
-    </style>
 </head>
 <body>
     <h2>브릿지 에뮬레이터</h2>
-
-    <div id="nav-bar">
-        <button data-vo="debug-mode">디버깅 모드</button>
-        <button data-vo="bridge-native">브릿지 네이티브</button>
-        <button data-vo="bridge-web">브릿지 웹</button>
-    </div>
-
-    <div id="bridge-native">
-        <div>
-            <select data-vo="commnads" style="width: 100%; padding: .1rem;">
-                <option value="">브릿지 네이티브</option>
-                <option data-template="option-item"></option>
-            </select>
-            <textarea data-vo="receive-data" style="margin-top:.2rem; width:100%; height:10rem;"></textarea>
+    <section id="emulator">
+        <div class="bar">
             <div>
-                <button data-vo="save">저장</button>
-                <button data-vo="add-error">오류값 추가</button>
-                <button data-vo="close">닫기</button>
+                <button data-vo="selected-bridge">=== 브릿지 선택 ===</button>
+                <button data-vo="send" class="send">저장</button>
             </div>
+            <ul data-vo="bridge-messages">
+                <li data-template="message-item">
+                    <button data-vo="message">fetchJson</button>
+                </li>
+            </ul>
         </div>
-    </div>
+        <div class="bar">
+            <div>
+                <button data-vo="selected-bridge">=== 이벤트 선택 ===</button>
+                <button data-vo="send" class="send">저장</button>
+            </div>
+            <ul data-vo="bridge-messages">
+                <li data-template="message-item">
+                    <button data-vo="message">fetchJson</button>
+                </li>
+            </ul>
+        </div>
 
-    <div id="bridge-web">
-        <select style="width: 100%;">
-            <option value="">브릿지 웹</option>
-        </select>
-    </div>
+        <div class="param">
+            <strong>값 입력</strong>
+            <textarea data-vo="payload"></textarea>
+        </div>
+    </section>
 
     <script src="bridge-emulator.js"></script>
 </body>

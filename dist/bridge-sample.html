@@ -4,25 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>브릿지 샘플</title>
     <script src="../libs/bada.js"></script>
     <script src="../libs/bada-bridge.js"></script>
     <style>
-    button {
+    button.on {
+        background: black;
+        color: white;
+    }
+    .hidden {
+        display: none !important;
+    }
+    .nav-bar {
+        display: flex;
+        gap: .4rem;
+        padding: .4rem 0;
+    }
+    .select-bar {
+        position: relative;
+    }
+    .select-bar button {
         width: 100%;
         padding: .2rem;
     }
-    .bar {
-        position: relative;
-    }
-    .bar> div {
+    .select-bar> div {
         display: flex;
         gap: .4rem;
     }
-    .bar> div .send {
+    .select-bar> div .send {
         width: 3.5rem;
     }
-    .bar> ul {
+    .select-bar> ul {
         display: none;
         position: absolute;
         margin: 0;
@@ -32,10 +44,11 @@
         max-height: 12rem;
         overflow-y: auto;
     }
-    .bar> ul.on {
+    .select-bar> ul.on {
         display: block;
+        z-index: 9;
     }
-    .bar> ul> li {
+    .select-bar> ul> li {
         list-style: none;
         margin-top: .6rem;
         width: 100%;
@@ -51,11 +64,16 @@
 </head>
 
 <body>
-    <h2>브릿지 샘플</h2>
-    <section id="sample-bridge">
-        <div class="bar">
+    <div id="nav-bar" class="nav-bar">
+        <button data-vo="sample" class="on">브릿지 샘플</button>
+        <button data-vo="emulator">브릿지 에뮬레이터</button>
+    </div>
+
+    <!-- 브릿지 샘플 -->
+    <section id="bridge-sample">
+        <div class="select-bar">
             <div>
-                <button data-vo="selected-bridge">=== selected ===</button>
+                <button data-vo="selected-bridge">=== 브릿지 메시지 선택 ===</button>
                 <button data-vo="send" class="send">전송</button>
             </div>
             <ul data-vo="bridge-messages">
@@ -69,43 +87,47 @@
             <strong>요청</strong>
             <textarea data-vo="payload"></textarea>
         </div>
+
         <div class="param">
             <strong>응답</strong>
             <textarea data-vo="receive"></textarea>
         </div>
     </section>
 
-    <script src="bridge-sample.js"></script>
 
-    <!-- <h2>브릿지 샘플</h2>
-    <section id="sample-form1">
-        <div class="block-list">
-            <button data-vo="bridge-once">브릿지 단건</button>
-            <button data-vo="bridge-multi">브릿지 다건</button>
-            <button data-vo="bridge-chain">브릿지 체인</button>
-            <button data-vo="bridge-error">미등록 브릿지</button>
+    <!-- 브릿지 에뮬레이터 -->
+    <section id="bridge-emulator" class="hidden">
+        <div class="select-bar">
+            <div>
+                <button data-vo="event-type">=== 브릿지 이벤트 ===</button>
+                <button data-vo="event-save" class="send">저장</button>
+            </div>
+            <ul data-vo="event-list">
+                <li data-template="event-item">
+                    <button data-vo="type">fetchJson</button>
+                </li>
+            </ul>
         </div>
 
-        <div>
-            <strong>send</strong>
-            <textarea data-vo="send" rows="5" style="width:100%;"></textarea>
-            <strong>receive</strong>
-            <textarea data-vo="receive" rows="5" style="width:100%;"></textarea>
+        <div class="select-bar" style="margin-top:.4rem;">
+            <div>
+                <button data-vo="message-type">=== 브릿지 메시지 ===</button>
+                <button data-vo="message-save" class="send">저장</button>
+            </div>
+            <ul data-vo="message-list">
+                <li data-template="message-item">
+                    <button data-vo="type">fetchJson</button>
+                </li>
+            </ul>
         </div>
 
-        <strong>등록 브릿지 목록</strong>
-        <ul data-vo="bridge-list" class="block-list">
-            <li data-template="bridge-item">
-                <button data-vo="toggle">getdata</button>
-                <div>
-                    <textarea data-vo="structure" cols="30" rows="10"></textarea>
-                </div>
-            </li>
-        </ul>
+        <div class="param">
+            <strong>내용 작성</strong>
+            <textarea data-vo="save-data"></textarea>
+        </div>
     </section>
 
-    <section id="sample-form1">
-        <h2>역브릿지 이벤트 샘플</h2>
-    </section> -->
+    <script src="bridge-sample.js"></script>
+    <script src="bridge-emulator.js"></script>
 </body>
 </html>
