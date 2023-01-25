@@ -1,0 +1,36 @@
+body {
+    margin-top: 8rem;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+}
+header h1 {
+    margin: .5rem;
+}
+header nav {
+    background: lightgray;
+}
+header ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+header ul >li {
+    list-style: none;
+    padding: .5rem;
+}
+
+.color-list {
+    padding: 0;
+    margin: 0;
+}
+.color-list >li {
+    list-style: none;
+    padding: .2rem;
+}
