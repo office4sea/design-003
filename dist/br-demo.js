@@ -1,5 +1,5 @@
-Br.bindHtml('br-logger', (vo, view)=> {
-    const logger = Br.logger(view.id);
+br.bindHtml('br-logger', (vo, view)=> {
+    const logger = br.logger(view.id);
 
     // 로그
     const {btnOut} = vo;
@@ -15,10 +15,10 @@ Br.bindHtml('br-logger', (vo, view)=> {
 
     // 디버그 활성화
     const {btnDebug} = vo;
-    btnDebug.checked = !!Br.logger.level;
+    btnDebug.checked = !!br.logger.level;
     btnDebug.event('click', _=> {
-        Br.logger.level = Br.logger.level ? 0 : 1;
-        Br.logger.break;
+        br.logger.level = br.logger.level ? 0 : 1;
+        br.logger.break;
         location.reload();
     });
 });

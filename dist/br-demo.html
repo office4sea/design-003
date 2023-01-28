@@ -7,12 +7,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="br-demo.css">
     <script src="../libs/bromine.js"></script>
+    <script src="br-init.js"></script>
 </head>
 <body>
     <header id="br-header">
         <h1>Co 라이브러리 데모</h1>
 
-        <nav id="nav-index">
+        <nav>
             <ul>
                 <li><a href="#br-logger">Br.logger</a></li>
                 <li><a href="#br-bind-html">Br.bindHtml</a></li>
@@ -41,6 +42,7 @@
         <h2>Co.bindHtml</h2>
         <p>HTML 엘리먼트의 레이아웃을 관리 합니다.</p>
 
+        <h3>view 객체</h3>
         <button data-vo="btn-set-text">setText</button>
         <button data-vo="btn-get-text">getText</button>
         <p data-vo="out-text">vo 객체의 텍스트 인/아웃 처리</p>
@@ -51,28 +53,28 @@
 
         <button data-vo="btn-set-value">setValue</button>
         <button data-vo="btn-get-value">getValue</button>
-        <p>vo 객체의 value 값 인/아웃 처리<br/>
+        <p>
             <input data-vo="in-value" type="text">
             <input data-vo="out-value" type="text">
         </p>
 
-        <button>add template</button>
-        <ul class="color-list">
-            <li>
-                color: <input type="text">
-                code: <input type="text">
-                <button>배경색</button>
-                <button>데이터</button>
-                <button>삭제</button>
-            </li>
-            <li>
-                color: <input type="text">
-                code: <input type="text">
-                <button>배경색</button>
-                <button>데이터</button>
-                <button>삭제</button>
+        <h3>template 객체</h3>
+        <button data-vo="btn-add-color">add template</button>
+        <ul data-vo="color-list" class="color-list">
+            <li data-template="color-item">
+                color: <input data-vo="color" type="text">
+                code: <input data-vo="code" type="text">
+                <button data-vo="toggle">배경색</button>
+                <button data-vo="log-out">데이터</button>
+                <button data-vo="remove">삭제</button>
             </li>
         </ul>
+
+        <h3>vo 핸들 객체</h3>
+        <input data-vo="io-input" type="text">
+        <p>text: <span data-vo="io-text"></span></p>
+        <p>html: <span data-vo="io-html"></span></p>
+        <p>value: <input data-vo="io-output" type="text"></p>
     </section>
 
     <!-- Br.popup -->
@@ -83,9 +85,9 @@
             <button>alert</button>
             <button>confirm</button>
             <p>
-                <input type="text">
-                <input type="text">
                 <button>주소검색</button>
+                <input type="text">
+                <input type="text">
             </p>
         </div>
     </section>
@@ -102,6 +104,6 @@
     </section>
 
     <script src="br-demo.js"></script>
-    <script src="br-bind-html.js"></script>
+    <script src="br-demo-bind-html.js"></script>
 </body>
 </html>

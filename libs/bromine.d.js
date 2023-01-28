@@ -46,4 +46,4 @@
  */
 
 /**@type {BrApp & {(): void}} */
-const Br = _=>_;
+const br = _=>_;
