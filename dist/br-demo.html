@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="br-demo.css">
+    <script src="../libs/bromine.js"></script>
+    <script src="br-init.js"></script>
+</head>
+<body>
+    <header id="br-header">
+        <h1>Co 라이브러리 데모</h1>
+
+        <nav>
+            <ul>
+                <li><a href="#br-logger">Br.logger</a></li>
+                <li><a href="#br-bind-html">Br.bindHtml</a></li>
+                <li><a href="#br-popup">Br.popup</a></li>
+                <li><a href="#br-bridge">Br.bridge</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Br.logger -->
+    <section id="br-logger">
+        <h2>Co.logger</h2>
+        <p>브라우저 디버깅 로그를 출력 합니다.</p>
+        <div>
+            <button data-vo="btn-out">로그</button>
+            <button data-vo="btn-warn">경고</button>
+            <button data-vo="btn-error">오류</button>
+            <label>
+                <input data-vo="btn-debug" type="checkbox"> 디버깅 활성화
+            </label>
+        </div>
+    </section>
+
+    <!-- Br.bindHtml -->
+    <section id="br-bind-html">
+        <h2>Co.bindHtml</h2>
+        <p>HTML 엘리먼트의 레이아웃을 관리 합니다.</p>
+
+        <h3>view 객체</h3>
+        <button data-vo="btn-set-text">setText</button>
+        <button data-vo="btn-get-text">getText</button>
+        <p data-vo="out-text">vo 객체의 텍스트 인/아웃 처리</p>
+
+        <button data-vo="btn-set-html">setHtml</button>
+        <button data-vo="btn-get-html">getHtml</button>
+        <p data-vo="out-html">vo 객체의 HTML 마크업 처리</p>
+
+        <button data-vo="btn-set-value">setValue</button>
+        <button data-vo="btn-get-value">getValue</button>
+        <p>
+            <input data-vo="in-value" type="text">
+            <input data-vo="out-value" type="text">
+        </p>
+
+        <h3>template 객체</h3>
+        <button data-vo="btn-add-color">add template</button>
+        <ul data-vo="color-list" class="color-list">
+            <li data-template="color-item">
+                color: <input data-vo="color" type="text">
+                code: <input data-vo="code" type="text">
+                <button data-vo="toggle">배경색</button>
+                <button data-vo="log-out">데이터</button>
+                <button data-vo="remove">삭제</button>
+            </li>
+        </ul>
+
+        <h3>vo 핸들 객체</h3>
+        <input data-vo="io-input" type="text">
+        <p>text: <span data-vo="io-text"></span></p>
+        <p>html: <span data-vo="io-html"></span></p>
+        <p>value: <input data-vo="io-output" type="text"></p>
+    </section>
+
+    <!-- Br.popup -->
+    <section id="br-popup">
+        <h2>Co.popup</h2>
+        <p>레이어팝업을 관리 합니다.</p>
+        <div>
+            <button>alert</button>
+            <button>confirm</button>
+            <p>
+                <button>주소검색</button>
+                <input type="text">
+                <input type="text">
+            </p>
+        </div>
+    </section>
+
+    <!-- Br.bridge -->
+    <section id="br-bridge">
+        <h2>Co.bridge</h2>
+        <p>브라우저와 네이티브간 메시지 거래를 관리 합니다.</p>
+        <div>
+            <button>메시지</button>
+            <button>이벤트</button>
+            <button>에뮬레이터</button>
+        </div>
+    </section>
+
+    <script src="br-demo.js"></script>
+    <script src="br-demo-bind-html.js"></script>
+</body>
+</html>

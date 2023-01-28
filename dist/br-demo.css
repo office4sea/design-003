@@ -1,0 +1,44 @@
+body {
+    padding-bottom: 8rem;
+}
+
+header nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: .5rem;
+    width: 100%;
+    background: lightgray;
+}
+header ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+header ul >li {
+    list-style: none;
+    padding: .5rem;
+}
+section >h2 {
+    padding-bottom: .5rem;
+    border-bottom: 2px solid gray;
+}
+
+.color-list {
+    padding: 0;
+    margin: 0;
+}
+.color-list >li {
+    list-style: none;
+    padding: .2rem;
+}
+.color-list >li.red {
+    background-color: red;
+}
+.color-list >li.green {
+    background-color: green;
+}
+.color-list >li.blue {
+    background-color: blue;
+}
