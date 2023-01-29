@@ -1,37 +1,37 @@
-br.bindHtml('br-bind-html', (vo, view)=> {
+br.bindHtml('br-bind-html', view=> {
     const logger = br.logger(view.id);
 
     // setText
-    const {btnSetText} = vo;
+    const {vo: {btnSetText}} = view;
     btnSetText.event('click', _=> view.setText({
         outText: '텍스트를 출력 합니다.',
         outHtml: '<strong>HTML을</strong> 출력 합니다.'
     }));
 
     // getText
-    const {btnGetText} = vo;
+    const {vo: {btnGetText}} = view;
     btnGetText.event('click', _=> logger.out(view.getText()));
 
     // setHtml
-    const {btnSetHtml} = vo;
+    const {vo: {btnSetHtml}} = view;
     btnSetHtml.event('click', _=> view.setHtml({
         outText: '텍스트를 출력 합니다.',
         outHtml: '<strong>HTML을</strong> 출력 합니다.'
     }));
 
     // getHtml
-    const {btnGetHtml} = vo;
+    const {vo: {btnGetHtml}} = view;
     btnGetHtml.event('click', _=> logger.out(view.getHtml()));
 
     // setValue
-    const {btnSetValue} = vo;
+    const {vo: {btnSetValue}} = view;
     btnSetValue.event('click', _=> view.setValue({
         inValue: 'input value',
         outValue: 'output value'
     }));
 
     // getValue
-    const {btnGetValue} = vo;
+    const {vo: {btnGetValue}} = view;
     btnGetValue.event('click', _=> logger.out(view.getValue()));
 
     // ===== 템플릿 추가 =====
@@ -41,7 +41,7 @@ br.bindHtml('br-bind-html', (vo, view)=> {
         {color: 'blue', code: '#00f'},
     ];
 
-    const {btnAddColor, colorList} = vo;
+    const {vo: {btnAddColor, colorList}} = view;
     btnAddColor.event('click', _=> {
         const data = colorDatas.pop();
         if(!data) return;

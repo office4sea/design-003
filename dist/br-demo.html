@@ -7,7 +7,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="br-demo.css">
     <script src="../libs/bromine.js"></script>
-    <script src="br-init.js"></script>
 </head>
 <body>
     <header id="br-header">
@@ -82,12 +81,12 @@
         <h2>Co.popup</h2>
         <p>레이어팝업을 관리 합니다.</p>
         <div>
-            <button>alert</button>
-            <button>confirm</button>
+            <button data-vo="btn-alert">alert</button>
+            <button data-vo="btn-confirm">confirm</button>
             <p>
-                <button>주소검색</button>
-                <input type="text">
-                <input type="text">
+                <button data-vo="btn-zipcode">주소검색</button>
+                <input data-vo="zip-code" type="text">
+                <input data-vo="zip-addr" type="text">
             </p>
         </div>
     </section>
@@ -103,7 +102,13 @@
         </div>
     </section>
 
+    <!-- 레이어 팝업 -->
+    <div id="layer-popup" class="layer-popup"></div>
+
+    <script src="br-init.js"></script>
     <script src="br-demo.js"></script>
     <script src="br-demo-bind-html.js"></script>
+    <script src="br-demo-popup.js"></script>
+    <script src="br-demo-popup-zipcode.js"></script>
 </body>
 </html>
