@@ -40,7 +40,7 @@ br(_=> {
         const last = event.popups.pop();
         const down = event.popups.pop();
 
-        logger.out('----observable------', event);
+        logger.out('popup:observable >>>>>', event);
         const {isOpen} = event;
         if(!isOpen) down && down.view.removeClass('none');
         else {
@@ -55,38 +55,44 @@ br(_=> {
 
     // Alert 팝업
     br.loadHtml({selector: '#layer-popup', html: popupHtml.alert})
-        .then(_=> br.popup('alert', ppp=> {
-            ppp.view =  br.bindHtml('popup-alert', view=> {
-                view.vo.ok.event('click', _=> ppp.close());
+        .then(_=> br.popup('alert', pi=> {
+            pi.view =  br.bindHtml('popup-alert', view=> {
+                view.vo.ok.event('click', _=> pi.close());
             });
 
             // 팝업 오픈 이벤트
-            ppp.onOpen = param=> {
+            pi.onOpen = param=> {
                 const custom = (typeof param == 'string') ? {message: param} : param;
-                ppp.view.setHtml(Object.assign({ok: '확인'}, custom));
-                ppp.view.addClass('active');
+                pi.view.setHtml(Object.assign({ok: '확인'}, custom));
+                pi.view.addClass('active');
             };
             // 팝업 종료 이벤트
-            ppp.onClose = _=> ppp.view.removeClass('active');
+            pi.onClose = _=> pi.view.removeClass('active');
+
+            // 이벤트 브로드케스팅 수신자
+            pi.onReceiver = prm=> {
+                logger.out('alert::onReceiver', prm);
+                if((prm||{}).type == 'keyback') pi.close();
+            };
         }));
 
     // Confirm 팝업
     br.loadHtml({selector: '#layer-popup', html: popupHtml.confirm})
-        .then(_=> br.popup('confirm', ppp=> {
-            ppp.view =  br.bindHtml('popup-confirm', view=> {
-                view.vo.ok.event('click', _=> ppp.close(true));
-                view.vo.cancel.event('click', _=> ppp.close(false));
-                view.vo.close.event('click', _=> ppp.close());
+        .then(_=> br.popup('confirm', pi=> {
+            pi.view =  br.bindHtml('popup-confirm', view=> {
+                view.vo.ok.event('click', _=> pi.close(true));
+                view.vo.cancel.event('click', _=> pi.close(false));
+                view.vo.close.event('click', _=> pi.close());
             });
 
             // 팝업 오픈 이벤트
-            ppp.onOpen = param=> {
+            pi.onOpen = param=> {
                 const custom = (typeof param == 'string') ? {message: param} : param;
-                ppp.view.setHtml(Object.assign({ok: '확인', cancel: '취소', close: '닫기'}, custom));
-                ppp.view.addClass('active');
+                pi.view.setHtml(Object.assign({ok: '확인', cancel: '취소', close: '닫기'}, custom));
+                pi.view.addClass('active');
             };
             // 팝업 종료 이벤트
-            ppp.onClose = _=> ppp.view.removeClass('active');
+            pi.onClose = _=> pi.view.removeClass('active');
         }));
 
     // ========== AJAX 설정 ==========
@@ -98,5 +104,18 @@ br(_=> {
 
     // ========== 브릿지 설정 ==========
     // 브릿지 초기화
-    // br.bridge('brNative');
+    br.bridge('brNative');
+
+    // 브릿지 이벤트 수신 리스너 등록
+    br.bridge.addEventListener('keyback', event=> {
+        logger.out(`'keyback' 이벤트 수신`, event);
+        // 팝업 객체에 이벤트 브로드캐스팅
+        br.popup.brodcast({type: 'keyback'});
+    });
+
+    // 브릿지 메시지 전송
+    br.bridge.getVersion = param=> {
+        logger.out('bridge.getVersion');
+        return br.bridge.postMessage('getVersion', param);
+    };
 });
