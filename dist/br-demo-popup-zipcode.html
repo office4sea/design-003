@@ -1,0 +1,25 @@
+<div id="popup-zipcode" class="modal">
+    <div class="modal-container">
+        <div class="modal-header">주소검색</div>
+        <div data-vo="message" class="modal-body zipcode">
+            <div>
+                <input data-vo="word" type="text">
+                <button data-vo="search">검색</button>
+            </div>
+
+            <ul data-vo="addr" class="addr-list">
+                <li data-template="addr-item">
+                    <a data-vo="action" href="#">
+                        <div class="zip-code">우편번호:
+                            <span data-vo="zip-code">12345</span>
+                        </div>
+                        <div data-vo="zip-addr" class="zip-addr">서울 특별시...</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-close">
+            <button data-vo="close">닫기</button>
+        </div>
+    </div>
+</div>
