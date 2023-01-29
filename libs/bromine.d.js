@@ -5,6 +5,7 @@
  * @property {BrBindHtml} bindHtml HTML 바인더
  * @property {BrPopup} popup 팝업
  * @property {BrBridge} bridge 브릿지
+ * @property {BrAjax} ajax 데이터 통신
  * 
  * @property {(v: loadHtmlParam)=> Promise<void>} loadHtml html 로드
  * 
@@ -100,6 +101,18 @@
  * @typedef {object} BrBridgeMessageError
  * @property {string} message 오류 메시지
  * @property {any} reason 오류 세부 사유
+ */
+
+// ========== BrAjax ==========
+/**
+ * @typedef {object} BrAjax
+ * @property {BrAjaxProgress & {(loading: boolean): BrAjax}} progress 프로그래스바
+ * @property {(...v: any)=> Promise<any>} fetch 데이터 요청 중재자
+ * @property {(v: Array<Promise>)=> Promise<any>} all 다건 비동기 요청
+ * 
+ * @typedef {object} BrAjaxProgress
+ * @property {(stat: any)=> void} on 로딩바 노출
+ * @property {(stat: any)=> void} off 로딩바 숨김
  */
 
 /**@type {BrApp & {(): void}} */

@@ -97,10 +97,41 @@ br(_=> {
 
     // ========== AJAX 설정 ==========
     // 로딩바 설정
-    // br.ajax.progress = {on(){}, off(){}};
+    br.ajax.progress = {
+        on(loading) {
+            if(loading) return;
+            logger.out('----- 프로그래스 on -----', loading);
+        },
+        off(loading) {
+            if(loading) return;
+            logger.out('----- 프로그래스 off -----', loading);
+        },
+    };
 
     // 거래 중계 설정
-    // br.ajax.fetch
+    br.ajax.fetch = ({url, option, target})=> {
+        if(!url) return Promise.reject('getJson: invalid url');
+
+        return new Promise((resolve, reject)=> {
+            fetch(url, option).then(rs=> rs.json())
+            .then(json=> {
+                const {body, header: {error}} = json;
+                if(!error) resolve(body);
+                else {
+                    br.popup.alert
+                        .target(target)
+                        .open(error.code ? `${error.message}(${error.code})` : [
+                            '처리가 지연되어 죄송합니다.',
+                            '잠시 후 다시 시도해 주세요.'
+                        ].join('<br/>'))
+                        .then(_=> reject({reson: json}));
+                }
+            });
+        });
+    };
+
+    // getJson
+    br.ajax.getJson = (url, {target}={})=> br.ajax.fetch({url, target, option:{method: 'get'}});
 
     // ========== 브릿지 설정 ==========
     // 브릿지 초기화
