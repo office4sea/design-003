@@ -4,6 +4,8 @@
  * @property {BrLogger} logger 로거
  * @property {BrBindHtml} bindHtml HTML 바인더
  * @property {BrPopup} popup 팝업
+ * @property {BrBridge} bridge 브릿지
+ * 
  * @property {(v: loadHtmlParam)=> Promise<void>} loadHtml html 로드
  * 
  * @typedef {object} loadHtmlParam
@@ -76,6 +78,28 @@
  * @property {Array<BrPopupItem>} popups 활성화된 팝업 리스트
  * @property {boolean=} isOpen 오픈 상태
  * @property {boolean=} isClose 종료 상태
+ */
+
+// ========== BrBridge ==========
+/**
+ * @typedef {BrBridgeConstructor & BrBridgeProperty} BrBridge
+ * @typedef {{(name: string): void, [k: string]: (param: any)=> Promise<any>}} BrBridgeConstructor
+ * @typedef {object} BrBridgeProperty
+ * @property {(type: string, param?: any)=> Promise<any>} postMessage 네이티브에 메시지 전달
+ * @property {(type: string, listener: (evt: BrBridgeMessageBody))=> void} addEventListener 네이티브 이벤트 수신
+ * 
+ * @typedef {object} BrBridgeMessage
+ * @property {BrBridgeMessageHeader} header 헤더
+ * @property {BrBridgeMessageBody} body 헤더
+ * @typedef {object} BrBridgeMessageHeader
+ * @property {string} type 메시지 타입
+ * @property {string=} trid 메시지 거래 아이디
+ * @typedef {object} BrBridgeMessageBody
+ * @property {any=} data 메시지 데이터
+ * @property {BrBridgeMessageError=} error 메시지 오류
+ * @typedef {object} BrBridgeMessageError
+ * @property {string} message 오류 메시지
+ * @property {any} reason 오류 세부 사유
  */
 
 /**@type {BrApp & {(): void}} */
