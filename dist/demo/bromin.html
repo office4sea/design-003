@@ -5,8 +5,269 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>br(bromine) 데모</title>
+    <!-- style -->
+    <link rel="stylesheet" href="/libs/bootstrap/5.2.2/bootstrap.min.css">
+    <link rel="stylesheet" href="/libs/bootstrap/bootstrap-icons.css">
+    <script src="/libs/bootstrap/5.2.2/bootstrap.min.js"></script>
+
+    <!-- frame work -->
+    <script src="/libs/bromine.js"></script>
+    <script src="../br-init.js"></script>
 </head>
 <body>
-    br(bromine) 데모
+<div class="container mb-5">
+    <h1 class="fs-1 fw-bold mt-3">br(bromine) js</h1>
+    <p>페이지 개발을 위한 프레임워크 가이드</p>
+
+    <nav class="fixed-bottom text-end pe-3 pb-3">
+        <div class="btn-group dropup">
+            <button class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-chat-dots fs-2"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#logger">logger</a></li>
+                <li><a class="dropdown-item" href="#bindHtml">bindHtml</a></li>
+                <li><a class="dropdown-item" href="#popup">popup</a></li>
+                <li><a class="dropdown-item" href="#bridge">bridge</a></li>
+                <li><a class="dropdown-item" href="#ajax">ajax</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- logger -->
+    <section id="logger" class="mt-3">
+        <h2 class="fs-2 fw-bold">logger</h2><hr>
+        <p>브라우저의 디버깅 처리를 관리 합니다.</p>
+        <p>
+            <div class="form-check form-switch">
+                <input id="logger-mode" type="checkbox" class="form-check-input" role="switch">
+                <label for="logger-mode" class="form-check-label">디버깅 모드 활성화</label>
+            </div>
+        </p>
+        <p>
+            <button class="btn btn-secondary">로그</button>
+            <button class="btn btn-warning">경고</button>
+            <button class="btn btn-danger">오류</button>
+        </p>
+    </section>
+
+    <!-- bindHtml -->
+    <section id="bindHtml" class="mt-5">
+        <h2 class="fw-bold">bindHtml</h2><hr>
+        <p>대상 엘리먼트를 바인딩 합니다.</p>
+
+        <!-- View 기능 -->
+        <h3>View 기능</h3>
+        <div class="alert alert-secondary mt-3">
+            <div class="row mt-3">
+                <div class="col">
+                    <button class="btn btn-secondary">setText</button>
+                    <button class="btn btn-secondary">getText</button>
+                    <button class="btn btn-secondary">setHtml</button>
+                    <button class="btn btn-secondary">getHtml</button>
+                    <button class="btn btn-secondary">setValue</button>
+                    <button class="btn btn-secondary">getValue</button>
+                </div>
+            </div>
+            <hr>
+
+            <h4 class="alert-heading">text</h4>
+            <div class="row">
+                <div class="col">text in/out</div>
+            </div>
+            <hr>
+
+            <h4 class="alert-heading">html</h4>
+            <div class="row">
+                <div class="col">html in/out</div>
+            </div>
+            <hr>
+
+            <h4 class="alert-heading">value</h4>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- ViewItem -->
+        <h3>ViewItem(<small>data-vo</small>) 기능</h3>
+        <div class="alert alert-secondary mt-3">
+            <h4 class="alert-heading">in</h4>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <hr>
+
+            <h4 class="alert-heading">out</h4>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">text</div>
+            </div>
+            <div class="row">
+                <div class="col">html</div>
+            </div>
+        </div>
+
+        <!-- ViewTemplate -->
+        <h3>ViewTemplate(<small>data-template</small>) 기능</h3>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-secondary">항목 추가</button>
+            </div>
+        </div>
+
+        <div>
+            <div class="alert alert-danger mt-3">
+                <button class="btn btn-danger">배경색 토글</button>
+                <button class="btn btn-danger">데이터 로그 출력</button>
+                <button class="btn btn-danger">삭제</button>
+            </div>
+            <div class="alert alert-primary mt-3"></div>
+            <div class="alert alert-success mt-3"></div>
+        </div>
+    </section>
+
+    <!-- popup -->
+    <section id="popup" class="mt-5">
+        <h2 class="fw-bold">popup</h2><hr>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-secondary">alert</button>
+                <button class="btn btn-secondary">confirm</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-2">
+                <button class="btn btn-secondary">주소검색</button>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-7">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+    </section>
+
+    <!-- bridge -->
+    <section id="bridge" class="mt-5">
+        <h2 class="fw-bold">bridge</h2><hr>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-secondary">message 샘플</button>
+                <button class="btn btn-secondary">event 샘플</button>
+                <button class="btn btn-secondary">bridge 페이지 이동</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ajax -->
+    <section id="ajax" class="mt-5">
+        <h2 class="fs-2 fw-bold">ajax</h2><hr>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-secondary">데이터 요청</button>
+                <button class="btn btn-secondary">다건요청 요청</button>
+                <button class="btn btn-secondary">데이터 응답 오류</button>
+                <button class="btn btn-secondary">데이터 처리 거부</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- popup area -->
+<div>
+    <!-- alert -->
+    <div class="modal bg-black bg-opacity-50 _d-block _fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Alert</h1>
+                    <!-- <button class="btn-close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <p>alert message</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- confirm -->
+    <div class="modal bg-black bg-opacity-50 _d-block _fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Confirm</h1>
+                    <!-- <button class="btn-close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <p>confirm message</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary">취소</button>
+                    <button class="btn btn-primary">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- zipcode -->
+    <div class="modal bg-black bg-opacity-50 _d-block _fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">주소검색</h1>
+                    <button class="btn-close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <button class="btn btn-outline-secondary">
+                                    <i class="bi bi-search"></i> search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="fw-bold">11111</div>
+                                    <div>서울 특별시 서초구 반포대로 11111</div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="fw-bold">22222</div>
+                                    <div>서울 특별시 서초구 반포대로 22222</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="br-logger.js"></script>
+<script src="br-bind-html.js"></script>
+<script src="br-popup.js"></script>
+<script src="br-bridge.js"></script>
+<script src="br-ajax.js"></script>
 </body>
 </html>
