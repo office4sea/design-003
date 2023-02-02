@@ -2,6 +2,56 @@ br(_=> {
     const logger = br.logger('br-init');
     logger.out('br 초기화 및 설정');
 
+    // 데이터 요청
+    // ====================
+    // ajax 기능 재정의
+    br.ajax({
+        getJson(url) {
+            if(!url) return Promise.reject('getJson: invalid url');
+            const custMessage = '처리가 지연되어 죄송합니다.<br/>잠시 후 다시 시도해 주세요.';
+            return new Promise((resolve, reject)=> {
+                setTimeout(_=> {
+                    fetch(url).then(rs=> rs.json())
+                    .then(result=> {
+                        const {body, header: {error}} = result;
+                        if(!error) resolve(body);
+                        else {
+                            logger.error('ajax.getJson:', {url, result});
+                            const {code, message} = error;
+                            reject(message ? `${message}(${code})` : `${custMessage}${code?`(${code})`:''}`);
+                        }
+                    })
+                    .catch(error=> {
+                        logger.error('ajax.getJson:', {url, error})
+                        reject(custMessage);
+                    });
+                }, 1000);
+            });
+        },
+    });
+
+    // ajax 프로그래스바 설정
+    br.ajax.progress = {
+        on(loading) {
+            if(loading) return;
+            logger.out('----- 프로그래스 on -----', loading);
+            this._visible(true);
+        },
+        off(loading) {
+            if(loading) return;
+            logger.out('----- 프로그래스 off -----', loading);
+            this._visible(false);
+        },
+
+        _visible(isShow) {
+            const ui = document.getElementById('ajax-progress');
+            if(isShow) ui.classList.remove('d-none');
+            else {
+                ui.classList.add('d-none');
+            }
+        },
+    };
+
     // 팝업 설정
     // ====================
     // 팝업 엘리먼트 동적 추가
@@ -9,7 +59,7 @@ br(_=> {
         const _getHtmlNodes= innerHTML=>
             [...Object.assign(document.createElement('div'), {innerHTML}).children];
 
-        return ((typeof loader == 'string') ? br.fetchText(loader) : loader)
+        return ((typeof loader == 'string') ? br.ajax.getText(loader) : loader)
             .then(innerHTML=> _getHtmlNodes(innerHTML))
             .then(htmlNodes=> {
                 const popups = document.getElementById('layer-popups');
@@ -53,7 +103,7 @@ br(_=> {
         _visibleLast(isOpen);
     };
 
-    const waitHtml = br.fetchText('/dist/demo/popup/system-popup.html');
+    const waitHtml = br.ajax.getText('/dist/demo/popup/system-popup.html');
     // 페이지 로드 완료 후 처리
     // ====================
     br.ready(_=> {

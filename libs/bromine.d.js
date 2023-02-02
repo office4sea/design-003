@@ -3,12 +3,10 @@
  * @property {BrLogger} logger 디버깅 로그
  * @property {BrBindHtml} bindHtml HTML 바인더
  * @property {BrPopup} popup 팝업
- * @property {*} ajax 데이터 요청
+ * @property {BrAjax} ajax 데이터 요청
  * @property {*} bridge 브릿지
  * 
  * @property {(v: ()=> void)=> void} ready 페이지 로드 완료
- * @property {(url: string)=> Promise<string>} fetchText text 데이터 요청
- * @property {(url: string, option?: any)=> Promise<object>} fetchJson json 데이터 요청
  * @property {(url: string | Array<string>)=> Promise<void>} loadScripts script 로더
  */
 
@@ -79,6 +77,27 @@
  * @property {Array<BrPopupItem>} popups 활성화된 팝업 리스트
  * @property {boolean=} isOpen 오픈 상태
  * @property {boolean=} isClose 종료 상태
+ */
+
+// ========== BrAjax ==========
+/**
+ * @typedef {BrAjaxConstructor & BrAjaxProperty & BrAjaxDelegator} BrAjax
+ * @typedef {(v: BrAjaxDelegator)=> void} BrAjaxConstructor
+ * @typedef {object} BrAjaxProperty
+ * @property {BrAjaxProgress & {(loading: boolean): BrAjax}} progress 프로그래스바
+ * @property {(v: Array<Promise>)=> Promise<any>} all 다건 비동기 요청
+ * @property {(v: any)=> Promise<string>} getText 텍스트 요청
+ * @property {(v: any, p?: any)=> Promise<string>} getJson JSON 데이터 요청
+ * @property {(v: any, p?: any)=> Promise<string>} postJson JSON 데이터 요청(POST)
+ * 
+ * @typedef {object} BrAjaxDelegator
+ * @property {(v: any)=> Promise<string>} getText 텍스트 요청
+ * @property {(v: any, p?: any)=> Promise<string>} getJson JSON 데이터 요청
+ * @property {(v: any, p?: any)=> Promise<string>} postJson JSON 데이터 요청(POST)
+ * 
+ * @typedef {object} BrAjaxProgress
+ * @property {(stat: any)=> void} on 로딩바 노출
+ * @property {(stat: any)=> void} off 로딩바 숨김
  */
 
 /**@type {BrApp & {(): void}} */
