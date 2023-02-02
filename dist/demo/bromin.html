@@ -61,35 +61,35 @@
         <div class="alert alert-secondary mt-3">
             <div class="row mt-3">
                 <div class="col">
-                    <button class="btn btn-secondary">setText</button>
-                    <button class="btn btn-secondary">getText</button>
-                    <button class="btn btn-secondary">setHtml</button>
-                    <button class="btn btn-secondary">getHtml</button>
-                    <button class="btn btn-secondary">setValue</button>
-                    <button class="btn btn-secondary">getValue</button>
+                    <button data-vo="btn-set-text" class="btn btn-secondary">setText</button>
+                    <button data-vo="btn-get-text" class="btn btn-secondary">getText</button>
+                    <button data-vo="btn-set-html" class="btn btn-secondary">setHtml</button>
+                    <button data-vo="btn-get-html" class="btn btn-secondary">getHtml</button>
+                    <button data-vo="btn-set-value" class="btn btn-secondary">setValue</button>
+                    <button data-vo="btn-get-value" class="btn btn-secondary">getValue</button>
                 </div>
             </div>
             <hr>
 
             <h4 class="alert-heading">text</h4>
             <div class="row">
-                <div class="col">text in/out</div>
+                <div data-vo="out-text" class="col">text in/out</div>
             </div>
             <hr>
 
             <h4 class="alert-heading">html</h4>
             <div class="row">
-                <div class="col">html in/out</div>
+                <div data-vo="out-html" class="col">html in/out</div>
             </div>
             <hr>
 
             <h4 class="alert-heading">value</h4>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control">
+                    <input data-vo="out-value1" type="text" class="form-control">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control">
+                    <input data-vo="out-value2" type="text" class="form-control">
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
             <h4 class="alert-heading">in</h4>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control">
+                    <input data-vo="io-input" type="text" class="form-control">
                 </div>
             </div>
             <hr>
@@ -108,14 +108,14 @@
             <h4 class="alert-heading">out</h4>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control">
+                    <input data-vo="io-output" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
-                <div class="col">text</div>
+                <div data-vo="io-text" class="col">text</div>
             </div>
             <div class="row">
-                <div class="col">html</div>
+                <div data-vo="io-html" class="col">html</div>
             </div>
         </div>
 
@@ -123,18 +123,22 @@
         <h3>ViewTemplate(<small>data-template</small>) 기능</h3>
         <div class="row">
             <div class="col">
-                <button class="btn btn-secondary">항목 추가</button>
+                <button data-vo="btn-add-color" class="btn btn-secondary">항목 추가</button>
             </div>
         </div>
 
-        <div>
-            <div class="alert alert-danger mt-3">
-                <button class="btn btn-danger">배경색 토글</button>
-                <button class="btn btn-danger">데이터 로그 출력</button>
-                <button class="btn btn-danger">삭제</button>
+        <div data-vo="color-data-list" class="alert alert-secondary mt-3">
+            <pre>{"color":"red", "theme":"danger"}</pre>
+            <pre>{"color":"green", "theme":"success"}</pre>
+            <pre>{"color":"blue", "theme":"primary"}</pre>
+        </div>
+
+        <div data-vo="color-item-list">
+            <div data-template="color-item" class="alert mt-3">
+                <button data-vo="btn-toggle" class="btn">배경색 토글</button>
+                <button data-vo="btn-data-log" class="btn">데이터 로그 출력</button>
+                <button data-vo="btn-remove" class="btn">삭제</button>
             </div>
-            <div class="alert alert-primary mt-3"></div>
-            <div class="alert alert-success mt-3"></div>
         </div>
     </section>
 
