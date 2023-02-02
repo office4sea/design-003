@@ -13,6 +13,9 @@
     <!-- frame work -->
     <script src="/libs/bromine.js"></script>
     <script src="../br-init.js"></script>
+    <style>
+    *:focus {background-color: lightblue !important;}
+    </style>
 </head>
 <body>
 <div class="container mb-5">
@@ -147,19 +150,20 @@
         <h2 class="fw-bold">popup</h2><hr>
         <div class="row">
             <div class="col">
-                <button class="btn btn-secondary">alert</button>
-                <button class="btn btn-secondary">confirm</button>
+                <button data-vo="btn-alert" class="btn btn-secondary">alert</button>
+                <button data-vo="btn-confirm" class="btn btn-secondary">confirm</button>
+                <button data-vo="btn-custom" class="btn btn-secondary">custom confirm</button>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-2">
-                <button class="btn btn-secondary">주소검색</button>
+                <button data-vo="btn-zipcode" class="btn btn-secondary">주소검색</button>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control">
+                <input data-vo="zip-code" type="text" class="form-control">
             </div>
             <div class="col-7">
-                <input type="text" class="form-control">
+                <input data-vo="zip-addr" type="text" class="form-control">
             </div>
         </div>
     </section>
@@ -191,47 +195,7 @@
 </div>
 
 <!-- popup area -->
-<div id="layer-popups">
-    <!-- zipcode -->
-    <div class="modal bg-black bg-opacity-50 _d-block _fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">주소검색</h1>
-                    <button class="btn-close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="input-group">
-                                <input type="text" class="form-control">
-                                <button class="btn btn-outline-secondary">
-                                    <i class="bi bi-search"></i> search
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <hr>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <div class="fw-bold">11111</div>
-                                    <div>서울 특별시 서초구 반포대로 11111</div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="fw-bold">22222</div>
-                                    <div>서울 특별시 서초구 반포대로 22222</div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div id="layer-popups"></div>
 
 <script src="br-logger.js"></script>
 <script src="br-bind-html.js"></script>
