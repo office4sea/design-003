@@ -1,10 +1,12 @@
 /**
- * @typedef {object} BrApp 어플리케이션 코어
+ * @typedef {BrAppConstructor & BrAppProperty} BrApp 어플리케이션 코어
+ * @typedef {(ef: ()=> void)=> void} BrAppConstructor
+ * @typedef {object} BrAppProperty
  * @property {BrLogger} logger 디버깅 로그
  * @property {BrBindHtml} bindHtml HTML 바인더
  * @property {BrPopup} popup 팝업
  * @property {BrAjax} ajax 데이터 요청
- * @property {*} bridge 브릿지
+ * @property {BrBridge} bridge 브릿지
  * 
  * @property {(v: ()=> void)=> void} ready 페이지 로드 완료
  * @property {(url: string | Array<string>)=> Promise<void>} loadScripts script 로더
@@ -57,8 +59,9 @@
  * @typedef {BrPopupProperty & BrPopupConstructor} BrPopup 팝업
  * @typedef {{(id: string, onInit: (v: BrPopupItem)=> void): BrPopupItem, [k: string]: BrPopupItem}} BrPopupConstructor
  * @typedef {object} BrPopupProperty
- * @property {(v: BrPopupEvent)=> void} observable 팝업 오픈/종료 감지 리스너
+ * @property {(isOpen: boolean)=> void} observable 팝업 오픈/종료 감지 옵저버
  * @property {(popups: Array<BrPopupItem>)=> void} brodcast 이벤트 브로드 캐스팅
+ * @property {()=> Array<BrPopupItem> & BrPopupOpens} getOpens 오픈된 팝업 목록 반환
  * 
  * @typedef {BrPopupItemProperty & BrPopupItemInterface} BrPopupItem
  * @typedef {object} BrPopupItemProperty
@@ -73,10 +76,9 @@
  * @property {(v: any)=> void=} onClose 팝업 종료시 호출되는 이벤트
  * @property {(v: any)=> void=} onReceiver 브로드 캐스팅 수신 이벤트
  * 
- * @typedef {object} BrPopupEvent
- * @property {Array<BrPopupItem>} popups 활성화된 팝업 리스트
- * @property {boolean=} isOpen 오픈 상태
- * @property {boolean=} isClose 종료 상태
+ * @typedef {object} BrPopupOpens
+ * @property {BrPopupItem} first 팝업
+ * @property {BrPopupItem} last 팝업
  */
 
 // ========== BrAjax ==========
@@ -100,5 +102,27 @@
  * @property {(stat: any)=> void} off 로딩바 숨김
  */
 
-/**@type {BrApp & {(): void}} */
+// ========== BrBridge ==========
+/**
+ * @typedef {BrBridgeConstructor & BrBridgeProperty} BrBridge
+ * @typedef {{(name: string): void, [k: string]: (param: any)=> Promise<any>}} BrBridgeConstructor
+ * @typedef {object} BrBridgeProperty
+ * @property {(type: string, param?: any)=> Promise<any>} postMessage 네이티브에 메시지 전달
+ * @property {(type: string, listener: (evt: BrBridgeMessageBody))=> void} addEventListener 네이티브 이벤트 수신
+ * 
+ * @typedef {object} BrBridgeMessage
+ * @property {BrBridgeMessageHeader} head 헤더
+ * @property {BrBridgeMessageBody} body 헤더
+ * @typedef {object} BrBridgeMessageHeader
+ * @property {string} type 메시지 타입
+ * @property {string=} trid 메시지 거래 아이디
+ * @typedef {object} BrBridgeMessageBody
+ * @property {any=} data 메시지 데이터
+ * @property {BrBridgeMessageError=} error 메시지 오류
+ * @typedef {object} BrBridgeMessageError
+ * @property {string} message 오류 메시지
+ * @property {any=} reason 오류 사유
+ */
+
+/**@type {BrApp} */
 const br = _=>_;

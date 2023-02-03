@@ -52,7 +52,6 @@ br.bindHtml('br-popup', view=> {
     const {vo: {btnZipcode}} = view;
     br.loadScripts('/dist/demo/popup/zipcode.js');
     btnZipcode.event('click', _=> {
-        console.dir(br.popup)
         br.popup.zipcode
             .target(btnZipcode)
             .open()
