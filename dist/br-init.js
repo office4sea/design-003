@@ -121,7 +121,7 @@ br(_=> {
         }
     };
 
-    const waitHtml = br.ajax.getText('/dist/demo/popup/system-popup.html');
+    const waitHtml = br.ajax.getText('popup/system-popup.html');
     // 페이지 로드 완료 후 처리
     // ====================
     br.ready(_=> {
