@@ -1,26 +1,27 @@
 br(_=> {
     const logger = br.logger('br-init');
     logger.out('br 초기화 및 설정');
+
     // 브릿지 설정
     // ====================
     // 브릿지 초기화
-    br.bridge('brNative', [
-        'getVersion'
-    ], (stat, vl)=> {
-        logger.warn('---브릿지 호출---', stat, vl);
-    });
-
+    br.bridge('brNative');
     // 브릿지 메시지에 대한 재정의
     br.bridge.getDeviceInfo = _=> {
         logger.out('bridge.getDeviceInfo');
         return br.bridge.postMessage('getDeviceInfo');
     };
-
     // 브릿지 이벤트 수신 리스너 등록
-    br.bridge.addEventListener('keyback', event=> {
-        logger.out(`'keyback' 이벤트 수신`, event);
+    br.bridge.addEventListener('ArrowLeft', event=> {
+        logger.out(`'ArrowLeft' 이벤트 수신`, event);
         // 팝업 객체에 이벤트 브로드캐스팅
-        br.popup.brodcast({type: 'keyback'});
+        br.popup.brodcast({type: 'ArrowLeft'});
+    });
+    // 키이벤트 받아 브릿지 스터빙
+    document.addEventListener('keyup', ({code})=> {
+        if(!brNative.isMock) return;
+
+        if(code == 'ArrowLeft') brNative.postEventStub('ArrowLeft');
     });
 
     // 데이터 요청
@@ -145,7 +146,7 @@ br(_=> {
             // 브로드캐스트 수신자
             pi.onReceiver= data=> {
                 logger.out('popup.alert 이벤트 수신', data);
-                if(data.type == 'keyback') {
+                if(data.type == 'ArrowLeft') {
                     if(br.popup.getOpens().last == pi) pi.close();
                 }
             };
