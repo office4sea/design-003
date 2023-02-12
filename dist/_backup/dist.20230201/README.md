@@ -1,7 +1,7 @@
 # 브로민 라이브러리
 
 ## Br.logger
-[데모](https://office4sea.github.io/design-003/dist/demo/bromin.html)
+[데모](br-demo.html#br-logger)
 
 브라우저 디버깅 로그를 출력 합니다.
 

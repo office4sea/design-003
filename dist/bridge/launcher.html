@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- style -->
+    <link rel="stylesheet" href="/libs/bootstrap/5.2.2/bootstrap.min.css">
+    <link rel="stylesheet" href="/libs/bootstrap/bootstrap-icons.css">
+    <script src="/libs/bootstrap/5.2.2/bootstrap.min.js"></script>
+    <!-- frame work -->
+    <script src="/libs/bromine.js"></script>
+</head>
+<body>
+    <div class="container">
+        <section id="test" class="mt-5">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group">
+                        <select data-vo="msg-type" class="form-select">
+                            <option value="">== 선택 ==</option>
+                        </select>
+                        <button data-vo="btn-send" class="btn btn-secondary">메시지 전송</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="form-check form-check-inline fw-bold text-success">
+                        <input data-vo="tab-msg-in" id="test-tab-msg-in" type="radio" name="msg-tab" class="form-check-input">
+                        <label for="test-tab-msg-in" class="form-check-label">메시지 입력</label>
+                    </div>
+                    <div class="form-check form-check-inline fw-bold text-primary">
+                        <input data-vo="tab-msg-out" id="test-tab-msg-out" type="radio" name="msg-tab" class="form-check-input">
+                        <label for="test-tab-msg-out" class="form-check-label">메시지 출력</label>
+                    </div>
+                    <div class="form-check form-check-inline fw-bold text-danger">
+                        <input data-vo="tab-evt" id="test-tab-evt" type="radio" name="msg-tab" class="form-check-input">
+                        <label for="test-tab-evt" class="form-check-label">이벤트</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input data-vo="tab-msg-str" id="test-tab-msg-str" type="radio" name="msg-tab" class="form-check-input" checked>
+                        <label for="test-tab-msg-str" class="form-check-label">메시지 구조</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <textarea data-vo="txt-msg-in" class="form-control bg-success bg-opacity-25 d-none" style="height: 50vh;"></textarea>
+                    <textarea data-vo="txt-msg-out" class="form-control bg-primary bg-opacity-25 d-none" style="height: 50vh;"></textarea>
+                    <textarea data-vo="txt-evt" class="form-control bg-danger bg-opacity-25 d-none" style="height: 50vh;"></textarea>
+                    <pre data-vo="txt-msg-str" class="bg-secondary bg-opacity-25" style="height: 50vh;"></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="mock">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group">
+                        <select class="form-select">
+                            <option value="">== 선택 ==</option>
+                        </select>
+                        <button class="btn btn-primary">메시지 저장</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <div class="input-group">
+                        <select class="form-select">
+                            <option value="">== 선택 ==</option>
+                        </select>
+                        <button class="btn btn-danger">이벤트 저장</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <textarea class="form-control bg-opacity-25" style="height: 50vh;"></textarea>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="launcher-data.js"></script>
+    <script src="launcher.js"></script>
+</body>
+</html>

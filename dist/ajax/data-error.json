@@ -1,0 +1,9 @@
+{
+    "header": {
+        "error": {
+            "code": 1,
+            "message": "fetch error"
+        }
+    },
+    "body": {}
+}
