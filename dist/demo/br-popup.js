@@ -50,7 +50,7 @@ br.bindHtml('br-popup', view=> {
 
     // zipcode
     const {vo: {btnZipcode}} = view;
-    br.loadScripts('/dist/demo/popup/zipcode.js');
+    br.loadScripts('popup/zipcode.js');
     btnZipcode.event('click', _=> {
         br.popup.zipcode
             .target(btnZipcode)
