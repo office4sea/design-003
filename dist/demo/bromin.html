@@ -125,9 +125,9 @@
         <!-- ViewTemplate -->
         <h3>ViewTemplate(<small>data-template</small>) 기능</h3>
         <div data-vo="color-data-list" class="alert alert-secondary mt-3">
-            <pre>{"color":"red", "theme":"danger"}</pre>
-            <pre>{"color":"green", "theme":"success"}</pre>
-            <pre>{"color":"blue", "theme":"primary"}</pre>
+            <pre>{"color":"red", "theme":"danger", "theme-desc": "레드- 오류처리"}</pre>
+            <pre>{"color":"green", "theme":"success", "theme-desc": "그린- 성공"}</pre>
+            <pre>{"color":"blue", "theme":"primary", "theme-desc": "블루- 활성화 상태"}</pre>
         </div>
         <div class="row">
             <div class="col">
@@ -136,9 +136,20 @@
         </div>
         <div data-vo="color-item-list">
             <div data-template="color-item" class="alert mt-3">
-                <button data-vo="btn-toggle" class="btn mt-1">배경색 토글</button>
-                <button data-vo="btn-data-log" class="btn mt-1">데이터 로그 출력</button>
-                <button data-vo="btn-remove" class="btn mt-1">삭제</button>
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="input-group">
+                            <input data-vo="color" type="text" class="form-control" placeholder="color">
+                            <input data-vo="theme" type="text" class="form-control" placeholder="theme">
+                            <input data-vo="theme-desc" type="text" class="form-control" placeholder="theme-desc">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mt-2 mt-md-0 text-end">
+                        <button data-vo="btn-toggle" class="btn btn-outline-secondary">배경색 토글</button>
+                        <button data-vo="btn-data-log" class="btn btn-outline-secondary">데이터 출력</button>
+                        <button data-vo="btn-remove" class="btn btn-outline-secondary">삭제</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

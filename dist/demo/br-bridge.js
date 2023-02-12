@@ -4,6 +4,8 @@ br.bindHtml('br-bridge', view=> {
     // message 샘플
     const {vo: {btnMsg}} = view;
     btnMsg.event('click', _=> {
+        // 브릿지 호출전 디버그 포인트 설정
+        br.logger.break;
         br.bridge.getDeviceInfo({a:11})
             .then(result=>
                 logger.out('bridge.getDeviceInfo', result))
