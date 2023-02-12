@@ -1,4 +1,4 @@
-br.popup.addPopupElement('/dist/demo/popup/zipcode.html')
+br.popup.addPopupElement('popup/zipcode.html')
 .then(_=> br.popup('zipcode', pi=> {
     const searchResults = [
         {zipCode: 11111, zipAddr: '서울 특별시 서초구 반포대로23길 11111'},
