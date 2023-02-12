@@ -56,9 +56,10 @@ br.bindHtml('br-bind-html', view=> {
     });
     const _getColorItem= data=> {
         const item = view.getTemplate('color-item');
+        // 테마 클래스 적용
         item.addClass(`alert-${data.theme}`);
-        Object.entries(item.vo).forEach(([,vo])=> vo.addClass(`btn-${data.theme}`));
 
+        // 이벤트 처리
         item.vo.btnToggle.event('click', _=> {
             if(item.hasClass(`alert-secondary`)) {
                 item.removeClass(`alert-secondary`);
@@ -68,7 +69,10 @@ br.bindHtml('br-bind-html', view=> {
                 item.removeClass(`alert-${data.theme}`);
             }
         });
-        item.vo.btnDataLog.event('click', _=> logger.out('데이터', data));
+        item.vo.btnDataLog.event('click', _=> {
+            logger.out('데이터', data);
+            item.setValue(data);
+        });
         item.vo.btnRemove.event('click', _=> item.remove());
         return item;
     };
