@@ -27,7 +27,7 @@ br.bindHtml('testLab', view=> {
             if(!type) return alert('타입을 입력하세요.'), vo.tab1BridgeMsgType.focus();
             if(!payload) return alert('전송 데이터를 입력하세요.'), vo.tab1BridgeMsgPayload.focus();
 
-            br.bridge.postMessage(type, JSON.parse(payload))
+            br.bridge.postMessage(type, JSON.parse(payload).data)
                 .then(result=> {
                     vo.tab1BridgeMsgRes.value= encJSON(result);
                 })
