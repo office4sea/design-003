@@ -86,7 +86,7 @@ br.bindHtml('testLab', view=> {
         logger.out('브릿지 데이터', data);
         // 탭: 테스트 구분
         br.form.tab(vo.tabNav, vo.tabContent);
-        vo.tabNav.setActive(voncNative.isMock ? 'tab3' : 'tab1');
+        vo.tabNav.setActive(voncNative.isMock ? 'tab2' : 'tab1');
 
         // 라디오 그룹: 브릿지 타입
         br.form.radioGroup(vo.tab2BridgeType);
@@ -117,7 +117,7 @@ br.bindHtml('testLab', view=> {
 
         function _addTab2EvtList(data) {
             const item= view.getTemplate('tab2EvtListItem');
-            const readData= voncNative.stubEventRead(data.type);
+            const readData= voncNative.stubEventRead && voncNative.stubEventRead(data.type);
 
             item.setText(data);
             item.addEventListener('click', evt=> {
@@ -137,7 +137,7 @@ br.bindHtml('testLab', view=> {
         }
         function _addTab1MsgList(data) {
             const item= view.getTemplate('tab1MsgListItem');
-            const readData= voncNative.stubMessageRead(data.type);
+            const readData= voncNative.stubMessageRead && voncNative.stubMessageRead(data.type);
 
             item.setText(data);
             item.addEventListener('click', evt=> {
@@ -151,7 +151,7 @@ br.bindHtml('testLab', view=> {
         }
         function _addTab2MsgList(data) {
             const item= view.getTemplate('tab2MsgListItem');
-            const readData= voncNative.stubMessageRead(data.type);
+            const readData= voncNative.stubMessageRead && voncNative.stubMessageRead(data.type);
 
             item.setText(data);
             item.addEventListener('click', evt=> {
