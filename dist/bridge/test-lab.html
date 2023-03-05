@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- style -->
+    <link rel="stylesheet" href="../../libs/bootstrap/5.2.2/bootstrap.min.css">
+    <link rel="stylesheet" href="../../libs/bootstrap/bootstrap-icons.css">
+    <script src="../../libs/bootstrap/5.2.2/bootstrap.min.js"></script>
+    <!-- frame work -->
+    <script src="../../libs/bromine.js"></script>
+    <script src="../../libs/br.bridge.js"></script>
+</head>
+<body>
+    <div class="container">
+        <section id="testLab" class="mt-3">
+            <ul data-vo="tabNav" class="nav nav-pills">
+                <li class="nav-item">
+                    <a data-form="tab1" class="nav-link" href="#">네이티브</a>
+                </li>
+                <li class="nav-item">
+                    <a data-form="tab2" class="nav-link" href="#">웹 브라우저</a>
+                </li>
+                <li class="nav-item">
+                    <a data-form="tab3" class="nav-link" href="#">전문 구조</a>
+                </li>
+            </ul>
+
+            <div data-vo="tabContent" class="tab-content mt-3">
+                <!-- 네이티브 -->
+                <div data-form="tab1" class="tab-pane fade" tabindex="0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group">
+                                <input data-vo="tab1BridgeMsgType" type="text" placeholder="메시지 타입" class="form-control">
+                                <button data-vo="tab1BridgeMsgSend" class="btn btn-secondary">메시지 전송</button>
+                            </div>
+                            <ul data-vo="tab1BridgeMsgList" class="list-group mt-1">
+                                <a data-template="tab1MsgListItem" href="#" class="list-group-item">
+                                    <span data-vo="save" class="badge bg-primary d-none">save</span>
+                                    <span data-vo="type">메시지 타입</span>
+                                    <small data-vo="desc" class="text-secondary">메시지 설명</small>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col">
+                            <textarea data-vo="tab1BridgeMsgPayload" class="form-control bg-secondary bg-opacity-25" style="height: 25vh;"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col">
+                            <textarea data-vo="tab1BridgeMsgRes" class="form-control bg-success bg-opacity-25" style="height: 45vh;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 웹 브라우저 -->
+                <div data-form="tab2" class="tab-pane fade" tabindex="0">
+                    <div class="row">
+                        <div data-vo="tab2BridgeType" class="col">
+                            <div class="form-check form-check-inline fw-bold text-success">
+                                <input data-form="msg" value="msg" type="radio" name="tab2BridgeType" class="form-check-input" checked>
+                                <label class="form-check-label">메시지</label>
+                            </div>
+                            <div class="form-check form-check-inline fw-bold text-danger">
+                                <input data-form="evt" value="evt" type="radio" name="tab2BridgeType" class="form-check-input">
+                                <label class="form-check-label">이벤트</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-vo="tab2BridgeMsg" class="row mt-3">
+                        <div class="col">
+                            <div class="input-group">
+                                <input data-vo="tab2BridgeMsgType" type="text" placeholder="메시지 타입" class="form-control">
+                                <button data-vo="tab2BridgeMsgWrite" class="btn btn-success">메시지 저장</button>
+                            </div>
+                            <ul data-vo="tab2BridgeMsgList" class="list-group mt-1">
+                                <a data-template="tab2MsgListItem" href="#" class="list-group-item">
+                                    <span data-vo="save" class="badge bg-primary d-none">save</span>
+                                    <span data-vo="type">메시지 타입</span>
+                                    <small data-vo="desc" class="text-secondary">메시지 설명</small>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <textarea data-vo="tab2BridgeMsgRes" class="form-control bg-success bg-opacity-25" style="height: 55vh;"></textarea>
+                        </div>
+                    </div>
+
+                    <div data-vo="tab2BridgeEvt" class="row mt-3 d-none">
+                        <div class="col">
+                            <div class="input-group">
+                                <input data-vo="tab2BridgeEvtType" type="text" placeholder="이벤트 타입" class="form-control">
+                                <button data-vo="tab2BridgeEvtWrite" class="btn btn-danger">이벤트 저장</button>
+                            </div>
+                            <ul data-vo="tab2BridgeEvtList" class="list-group mt-1">
+                                <a data-template="tab2EvtListItem" href="#" class="list-group-item">
+                                    <span data-vo="save" class="badge bg-primary d-none">save</span>
+                                    <span data-vo="type">메시지 타입</span>
+                                    <small data-vo="desc" class="text-secondary">메시지 설명</small>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <textarea data-vo="tab2BridgeEvtRes" class="form-control bg-danger bg-opacity-25" style="height: 55vh;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 전문 구조 -->
+                <div data-form="tab3" class="tab-pane fade" tabindex="0">
+                    <div class="row">
+                        <div class="col">
+                            <pre data-vo="tab3Protocol" class="form-control bg-secondary bg-opacity-25"></pre>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <h2>메소드 처리</h2>
+                            <p>
+                                브릿지명: voncNative<br/>
+                                메시지, 이벤트에 대한 스크립트 호출 방법
+                            </p>
+                        </div>
+
+                        <div class="col-12 mt-3"><strong>네이티브 =&gt; 웹</strong></div>
+                        <div class="col-12">
+                            <p class="form-control bg-success bg-opacity-25">
+                                <strong>브릿지명_receiveMessage(메시지전문);</strong><br/>
+                                요청한 메시지에 대한 수행 결과를 웹에 전달 합니다.<br/>
+                                ex) voncNative_receiveMessage(Message)
+                            </p>
+                            <p class="form-control bg-success bg-opacity-25">
+                                <strong>브릿지명_postEvent(메시지전문);</strong><br/>
+                                네이티브에서 발생한 이벤트를 웹에 전달 합니다.<br/>
+                                ex) voncNative_postEvent(Message)
+                            </p>
+                        </div>
+
+                        <div class="col-12"><strong>웹 =&gt; 네이티브</strong></div>
+                        <div class="col-12">
+                            <p class="form-control bg-warning bg-opacity-25">
+                                <strong>postMessage(메시지전문)</strong><br/>
+                                웹에서 네이티브로 메시지 수행을 요청 합니다.<br/>
+                                AOS: 웹뷰 생성시 JavascriptInterface 객체를 브릿지명("voncNative")으로 생성 후
+                                postMessage 메소드 선언시 @JavascriptInterface 어노테이션을 추가 합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="test-lab-data.js"></script>
+    <script src="test-lab.js"></script>
+</body>
+</html>
