@@ -1,52 +1,58 @@
 const data = {};
 
-// data.message = {
-//     getVersion: {
-//         payload: null,
-//         result: {
-//             data: '0.0.11'
-//         },
-//     },
-//     getDeviceInfo: {
-//         payload: {a: 1},
-//         result: {
-//             data: {
-//                 os: 'ios',
-//                 bender: 'apple',
-//             }
-//         },
-//     },
-// };
 data.message= [{
     type: 'version',
     desc: '버전 정보 요청',
-    payload: null,
+    payload: {data: null},
     response: {
         data: '0.0.1',
     },
 }, {
     type: 'deviceInfo',
-    payload: null,
+    desc: '디바이스 정보 요청: (오류 처리 샘플)',
+    payload: {data: null},
     response: {
-        os: 'ios',
-        bender: 'apple',
+        data: null,
+        error: {
+            message: '디바이스 정보 취득 실패',
+        }
     },
 }, {
     type: 'fetchJson',
+    desc: '데이터 요청',
     payload: {
-        token: 'q1w2e3',
-        api: '/my/info'
+        data: {
+            api: '/my/info',
+            param: {a:1, b:2}
+        }
     },
     response: {
-        name: '홍길동',
-        phone: '01012341234',
+        data: {
+            name: '홍길동',
+            phone: '01012341234',
+        },
     },
 }, {
     type: 'auth',
-    payload: null,
+    desc: '접근 승인 처리',
+    payload: {data: null},
     response: {
         data: null,
     },
 }];
 
-data.event = {};
+data.event = [{
+    type: 'keyback',
+    desc: '하드웨어 백버튼 이벤트',
+    payload: {data: null},
+    response: {
+        data: null,
+    },
+}, {
+    type: 'aabb2',
+    desc: '하드웨어 백버튼 이벤트',
+    payload: {data: null},
+    response: {
+        data: null,
+    },
+}];
