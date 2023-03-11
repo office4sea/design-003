@@ -19,8 +19,7 @@ br(_=> {
     });
     // 키이벤트 받아 브릿지 스터빙
     document.addEventListener('keyup', ({code})=> {
-        if(!brNative.isMock) return;
-
+        if(br.bridge.isApp) return;
         if(code == 'ArrowLeft') brNative.postEventStub('ArrowLeft');
     });
 
