@@ -14,7 +14,21 @@ app(_=> {
         '/app/wooriworld':
         '/design-003/app/wooriworld';
     app.page.move= path=> {
-        location.href= app.page.root+ /^\//.test(path) ? path : `/${path}`;
+        location.href= app.page.root + (/^\//.test(path) ? path : `/${path}`);
+    };
+    app.page.progress= {
+        on() {
+            this._progress= this._progress || document.getElementById('progress');
+            if(!this._progress) {
+                this._progress= document.body.appendChild(document.createElement('div'));
+                this._progress.id= 'progress';
+            }
+
+            this._progress.classList.remove('d-none');
+        },
+        off() {
+            this._progress.classList.add('d-none');
+        },
     };
 });
 
@@ -40,4 +54,22 @@ app(_=> {
     app.bridge.isMember= _=> br.bridge.postMessage('isMember');
     // 회원여부 확인
     app.bridge.memberVerify= vl=> br.bridge.postMessage('memberVerify', vl);
+    // 데이터 처리 요청
+    app.bridge.fetchJson= ({url, payload={}}= {})=> {
+        app.page.progress.on();
+        return _fetchJson().then(v=> {
+            return app.page.progress.off(), v;
+        });
+        
+        function _fetchJson() {
+            if(br.bridge.isApp) return br.bridge.postMessage('fetchJson', {url, payload});
+            else {
+                return fetch([app.page.root, url, '.json'].join('')).then(rs=> rs.json())
+                .then(result=> {
+                    if(/name-card\/get-list$/.test(url)) return result[payload.next || 'result0'];
+                    return result;
+                });
+            }
+        }
+    };
 });

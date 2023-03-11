@@ -1,0 +1,98 @@
+{
+    "result0": {
+        "next": "result1",
+        "list": [{
+            "bookmark": true,
+            "name": "이상해씨",
+            "rank": "풀/독",
+            "company": "씨앗포켓몬",
+            "email": "khk@a.com",
+            "phone": "0101112222"
+        },{
+            "bookmark": false,
+            "name": "파이리",
+            "rank": "불꽃",
+            "company": "도롱뇽포켓몬",
+            "email": "khk@a.com",
+            "phone": "0101112222"
+        },{
+            "bookmark": false,
+            "name": "꼬부기",
+            "rank": "물",
+            "company": "꼬마거북포켓몬",
+            "email": "khk@a.com",
+            "phone": "0101112222"
+        },{
+            "bookmark": false,
+            "name": "캐터피",
+            "rank": "벌레",
+            "company": "애벌레포켓몬",
+            "email": "khk@a.com",
+            "phone": "0101112222"
+        },{
+            "bookmark": false,
+            "name": "캐터피",
+            "rank": "벌레",
+            "company": "애벌레포켓몬",
+            "email": "no0010@a.com",
+            "phone": "0101112222"
+        }]
+    },
+    "result1": {
+        "next": "result2",
+        "list": [{
+            "bookmark": false,
+            "name": "뿔충이",
+            "rank": "벌레/독",
+            "company": "송충이포켓몬",
+            "email": "no0013@a.com",
+            "phone": "0101112222"
+        },{
+            "bookmark": false,
+            "name": "구구",
+            "rank": "노말/비행",
+            "company": "아기새포켓몬",
+            "email": "no0016@a.com",
+            "phone": "0101112222"
+        },{
+            "bookmark": true,
+            "name": "꼬렛",
+            "rank": "노말",
+            "company": "쥐포켓몬",
+            "email": "no0019@a.com",
+            "phone": "0101110019"
+        },{
+            "bookmark": true,
+            "name": "깨비참",
+            "rank": "노말/비행",
+            "company": "아기새포켓몬",
+            "email": "no0021@a.com",
+            "phone": "01011110021"
+        },{
+            "bookmark": false,
+            "name": "피카츄",
+            "rank": "전기",
+            "company": "쥐포켓몬",
+            "email": "no0025@a.com",
+            "phone": "01011110025"
+        }]
+    },
+    "result2": {
+        "next": "",
+        "list": [{
+            "bookmark": false,
+            "name": "모래두지",
+            "rank": "땅",
+            "company": "쥐포켓몬",
+            "email": "no0027@a.com",
+            "phone": "01011110027"
+        },{
+            "bookmark": false,
+            "name": "니드런",
+            "rank": "독",
+            "company": "독침포켓몬",
+            "email": "no0029@a.com",
+            "phone": "01011110029"
+        }]
+    }
+}
