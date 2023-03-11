@@ -1,6 +1,42 @@
 const data = {};
 
 data.message= [{
+    type: 'memberVerify',
+    desc: '회원 검증',
+    payload: {data: {id:'a', pwd:'b'}},
+    response: {
+        data: null,
+        error: {
+            message: '접근 권한이 존재 하지 않습니다.'
+        }
+    },
+}, {
+    type: 'isMember',
+    desc: '회원승인여부(로그인 여부)',
+    payload: {data: null},
+    response: {
+        data: true,
+    },
+}, {
+    type: 'getData',
+    desc: '앱내 데이터 취득',
+    payload: {data: {
+        key: 'key'
+    }},
+    response: {
+        data: 'value',
+    },
+}, {
+    type: 'setData',
+    desc: '앱내 데이터 저장',
+    payload: {data: {
+        key: 'key',
+        value: 'value'
+    }},
+    response: {
+        data: null,
+    },
+}, {
     type: 'version',
     desc: '버전 정보 요청',
     payload: {data: null},
