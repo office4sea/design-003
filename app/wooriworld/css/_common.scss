@@ -1,0 +1,223 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+
+html {scroll-behavior: smooth;}
+
+html,
+body,
+span,
+applet,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  outline: none;
+  color: $text-default;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+html,
+body,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+blockquote {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after {
+  content: "";
+  content: none;
+}
+ul,
+ol {
+  margin: 0px;
+  padding: 0;
+}
+ul li,
+ol li {
+  margin: 0px;
+  list-style: none;
+}
+img {
+  vertical-align: middle;
+  max-width: 100%;
+}
+button{
+  border:none;
+  outline:none;
+  background: transparent;
+}
+a,
+i {
+  border: none;
+}
+a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+label {
+  display: flex;
+  &.required {
+    &:after {
+      margin-left: 0.5rem;
+      content: "*";
+      display: block;
+      width: 5px;
+      height: 5px;
+      font-size: 14px;
+      color: $text-second;
+    }
+  }
+}
+
+select {
+  margin-right: 0.5rem;
+  border: 1px solid $line-bright;
+  outline: none;
+  min-width: 120px;
+  height: 36px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+input {
+  width: 150px;
+  border: 1px solid $line-bright;
+  outline: none;
+  height: 36px;
+  padding: 5px;
+  box-sizing: border-box;
+
+  &.w-70 {
+    width: 70px !important;
+  }
+
+  &.w-80 {
+    width: 80px !important;
+  }
+
+  &.w-300 {
+    width: 300px !important;
+  }
+
+  &.w-500 {
+    width: 500px !important;
+  }
+}
+
+.button {
+  width: 120px;
+  height: 40px;
+  border: 0;
+  padding: 6px 12px;
+  box-sizing: border-box;
+  color: $text-second;
+  background-color: #fff;
+  border-radius: 4px;
+  &-primary {
+    background-color: $btn-default;
+    color: white;
+  }
+
+  &-outline-primary {
+    border: 1px solid $btn-default;
+  }
+
+  &-secondary {
+    background-color: $btn-secondary;
+    color: $text-grey2;
+  }
+
+  &-outline-secondary {
+    border: 1px solid $line-bright;
+    color: $text-grey2;
+  }
+
+  &-third {
+    background-color: $btn-third;
+    color: white;
+  }
+}
+
+.text-hide {
+  text-indent: -9999px;
+}
+
+.fileUpload {
+  display: none;
+}
+
+span.invalid-text {
+  display: none;
+  width: 100%;
+  font-size: 14px;
+  color: red;
+}

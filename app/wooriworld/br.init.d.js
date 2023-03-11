@@ -12,6 +12,7 @@
  * @property {VoncBridge_getData} getData 앱내 데이터 취득
  * @property {()=> Promise<boolean>} isMember 회원승인여부(로그인 여부)
  * @property {(v: {id: string, pwd: string})=> Promise<null>} memberVerify 회원여부 확인(로그인 승인)
+ * @property {(v: {url: string, payload?: object})=> Promise<any>} fetchJson 데이터 처리 요청
  * 
  * @typedef {VoncBridge_setDataC & VoncBridge_setDataP} VoncBridge_setData 앱내 데이터 저장
  * @typedef {(key: string, value:string)=> Promise<null>} VoncBridge_setDataC
@@ -26,4 +27,5 @@
  * @typedef {object} VoncPage
  * @property {string} root 페이지 루트
  * @property {(path: string)=> void} move 페이지 이동
+ * @property {{on: ()=> void, off: ()=> void}} progress 프로그래스바 처리
  */
