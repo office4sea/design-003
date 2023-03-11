@@ -107,6 +107,7 @@
  * @typedef {BrBridgeConstructor & BrBridgeProperty} BrBridge
  * @typedef {{(name: string): void, [k: string]: (param: any)=> Promise<any>}} BrBridgeConstructor
  * @typedef {object} BrBridgeProperty
+ * @property {boolean} isApp 네이티브 어플리케이션 여부값
  * @property {(type: string, param?: any)=> Promise<any>} postMessage 네이티브에 메시지 전달
  * @property {(type: string, listener: (evt: BrBridgeMessageBody))=> void} addEventListener 네이티브 이벤트 수신
  * 
