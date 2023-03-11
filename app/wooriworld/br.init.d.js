@@ -6,6 +6,7 @@
  * @property {BrPopup} popup 팝업
  * @property {BrAjax} ajax 데이터 요청
  * @property {VoncPage} page 페이지 유틸리티
+ * @property {(focus: HTMLElement, v: string)=> Promise<undefined>} alert 얼럿 팝업
  * 
  * @typedef {object} VoncBridge
  * @property {VoncBridge_setData} setData 앱내 데이터 저장

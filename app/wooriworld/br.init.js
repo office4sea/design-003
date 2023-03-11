@@ -1,14 +1,15 @@
 /**@type {VoncApp} */
 const app= br;
 
-// 초기화 및 설정
 app(_=> {
+    // ===== 초기화 및 설정 =====
+    const _el= (tag, opt={})=> Object.assign(document.createElement(tag), opt);
     app.bridge('voncNative');
     app.logger.level= br.bridge.isApp ? 0 : 1;
-});
 
-// 페이지 설정
-app(_=> {
+    app.alert= ()=> {};
+
+    // ===== 페이지 설정 =====
     app.page= {};
     app.page.root= /localhost|127.0.0.1/.test(location.hostname)?
         '/app/wooriworld':
@@ -20,8 +21,7 @@ app(_=> {
         on() {
             this._progress= this._progress || document.getElementById('progress');
             if(!this._progress) {
-                this._progress= document.body.appendChild(document.createElement('div'));
-                this._progress.id= 'progress';
+                this._progress= document.body.appendChild(_el('div', {id: 'progress'}));
             }
 
             this._progress.classList.remove('d-none');
@@ -30,10 +30,11 @@ app(_=> {
             this._progress.classList.add('d-none');
         },
     };
-});
+    app.page.getPopupWrap= _=> {
+        return document.getElementById('_popup') || document.body.appendChild(_el('div', {id: '_popup'}));
+    };
 
-// 브릿지 설정
-app(_=> {
+    // ===== 브릿지 설정 =====
     // 앱내 데이터 저장
     app.bridge.setData= (key, value)=> {
         if(br.bridge.isApp) return br.bridge.postMessage('setData', {key, value});
