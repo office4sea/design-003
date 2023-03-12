@@ -8,6 +8,10 @@ app.bindHtml('card-create', (view, vo)=> {
     });
     // 취소
     vo.btnCancel.event('click', _=> app.page.move('/view/main.html'));
+    // 고객검색
+    vo.btnCustomerSearch.event('click', _=> {
+        alert();
+    });
 
     // ==== 내부기능 ====
     function initBind() {

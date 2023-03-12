@@ -2,12 +2,41 @@
 const app= br;
 
 app(_=> {
-    // ===== 초기화 및 설정 =====
+    const logger= app.logger('app.init');
     const _el= (tag, opt={})=> Object.assign(document.createElement(tag), opt);
+
+    // ===== 초기화 및 설정 =====
     app.bridge('voncNative');
     app.logger.level= br.bridge.isApp ? 0 : 1;
 
-    app.alert= ()=> {};
+    app.alert= (focus, message)=> {
+        if(!app.popup.popupAlert) _createAlert();
+        return app.popup.popupAlert.target(focus).open(message);
+
+        function _createAlert() {
+            app.page.loadPopupLayer(`<div id="popup-alert" class="modal" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div data-vo="message" class="modal-body">Alert 메시지</div>
+                    <div class="modal-footer">
+                      <button data-vo="ok" type="submit" class="button button-primary">확인</button>
+                    </div>
+                </div>
+              </div>
+              <div class="modal-backdrop"></div>
+            </div>`);
+            app.popup('popup-alert', pi=> {
+                pi.view = br.bindHtml(pi.id, ({vo:{ok}})=> {
+                    ok.event('click', _=> pi.close());
+                });
+                // 팝업 오픈 이벤트
+                pi.onOpen= message=> {
+                    const custom = (typeof message == 'string') ? {message} : message;
+                    pi.view.setHtml(Object.assign({ok: '확인'}, custom));
+                };
+            });
+        }
+    };
 
     // ===== 페이지 설정 =====
     app.page= {};
@@ -32,6 +61,43 @@ app(_=> {
     };
     app.page.getPopupWrap= _=> {
         return document.getElementById('_popup') || document.body.appendChild(_el('div', {id: '_popup'}));
+    };
+    app.page.loadPopupLayer= html=> {
+        const _popup= app.page.getPopupWrap();
+        _popup.appendChild(_el('div', {
+            innerHTML: typeof html == 'string' ? html : html.join('')
+        }));
+    };
+
+    // ===== 팝업 설정 =====
+    app.popup.observable= isOpen=> {
+        const popups = br.popup.getOpens();
+        logger.out('popup:observable >>>>>', isOpen);
+        _visibleLast(popups.pop(), isOpen);
+        _visibleDown(popups.pop(), !isOpen);
+
+        function _visibleDown(pi, isShow) {
+            if(!pi) return;
+            if(isShow) pi.view.removeClass('d-none');
+            else {
+                pi.view.addClass('d-none');
+            }
+        }
+        function _visibleLast(pi, isShow) {
+            if(!pi) return;
+            if(isShow) {
+                pi.view.addClass('d-block');
+                pi.view.removeClass('fade');
+                requestAnimationFrame(_=> {
+                    const modal = pi.view.querySelector('.modal-dialog');
+                    modal.tabIndex = 0;
+                    modal.focus();
+                });
+            } else {
+                pi.view.addClass('fade');
+                setTimeout(_=> pi.view.removeClass('d-block'), 100);
+            }
+        }
     };
 
     // ===== 브릿지 설정 =====
