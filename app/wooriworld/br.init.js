@@ -10,30 +10,38 @@ app(_=> {
     app.logger.level= br.bridge.isApp ? 0 : 1;
 
     app.alert= (focus, message)=> {
-        if(!app.popup.popupAlert) _createAlert();
-        return app.popup.popupAlert.target(focus).open(message);
+        if(app.popup.popupAlert) return app.popup.popupAlert.target(focus).open(message);
+        else {
+            return _createAlert().then(_=> {
+                return app.popup.popupAlert.target(focus).open(message);
+            });
+        }
 
         function _createAlert() {
-            app.page.loadPopupLayer(`<div id="popup-alert" class="modal" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                    <div data-vo="message" class="modal-body">Alert 메시지</div>
-                    <div class="modal-footer">
-                      <button data-vo="ok" type="submit" class="button button-primary">확인</button>
+            return app.page.loadPopupLayer({
+                html:`<div id="popup-alert" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div data-vo="message" class="modal-body text-center">Alert 메시지</div>
+                        <div class="modal-footer">
+                            <button data-vo="ok" type="submit" class="button button-primary">확인</button>
+                        </div>
                     </div>
                 </div>
-              </div>
-              <div class="modal-backdrop"></div>
-            </div>`);
-            app.popup('popup-alert', pi=> {
-                pi.view = br.bindHtml(pi.id, ({vo:{ok}})=> {
-                    ok.event('click', _=> pi.close());
+                <div class="modal-backdrop"></div>
+                </div>`
+            })
+            .then(_=> {
+                app.popup('popup-alert', pi=> {
+                    pi.view = br.bindHtml(pi.id, ({vo:{ok}})=> {
+                        ok.event('click', _=> pi.close());
+                    });
+                    // 팝업 오픈 이벤트
+                    pi.onOpen= message=> {
+                        const custom = (typeof message == 'string') ? {message} : message;
+                        pi.view.setHtml(Object.assign({ok: '확인'}, custom));
+                    };
                 });
-                // 팝업 오픈 이벤트
-                pi.onOpen= message=> {
-                    const custom = (typeof message == 'string') ? {message} : message;
-                    pi.view.setHtml(Object.assign({ok: '확인'}, custom));
-                };
             });
         }
     };
@@ -62,11 +70,16 @@ app(_=> {
     app.page.getPopupWrap= _=> {
         return document.getElementById('_popup') || document.body.appendChild(_el('div', {id: '_popup'}));
     };
-    app.page.loadPopupLayer= html=> {
+    app.page.loadPopupLayer= ({html, url})=> {
         const _popup= app.page.getPopupWrap();
-        _popup.appendChild(_el('div', {
-            innerHTML: typeof html == 'string' ? html : html.join('')
-        }));
+        return _getHtml().then(innerHTML=> _popup.appendChild(_el('div', {innerHTML})));
+
+        function _getHtml() {
+            if(html) return Promise.resolve(html);
+            else {
+                return fetch(app.page.root + url).then(rs=> rs.text());
+            }
+        }
     };
 
     // ===== 팝업 설정 =====

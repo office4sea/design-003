@@ -25,22 +25,7 @@
             </svg>
           </div>
           <h3>명함 입력</h3>
-          <div class="dots" role="button">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="100%" height="16px">
-              <image x="15px" y="0px" width="4px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAQCAQAAACbvxZ4AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAUPLhoD3vhnAAAALUlEQVQI163LMREAQAjEwIBJ/PfnId+Ag0+7ExxjHIyqaa6jEgqwXGmGEP5fD/DdPJU9gplYAAAAAElFTkSuQmCC" />
-            </svg>
-          </div>
         </header>
-        <ul class="drop-box">
-          <li>휴대폰 연락처에 저장</li>
-          <li><a href="./manage.html">미수금 및 납부 관리</a></li>
-          <li><a href="./state.html">월별요금통계</a></li>
-          <li><a href="./confirm.html">납품확인서</a></li>
-          <li>명함 삭제</li>
-        </ul>
 
         <section id="card-create" class="form-box">
           <form action="#">
@@ -52,7 +37,7 @@
               <div class="row mt-4">
                 <div class="col-8">
                   <label for="name">이름</label>
-                  <input type="text" id="name" placeholder="이름">
+                  <input data-vo="name" type="text" id="name" placeholder="이름">
                   <button type="button" class="cancel">
                     <svg 
                       xmlns="http://www.w3.org/2000/svg"
@@ -63,23 +48,50 @@
                   </button>
                 </div>
                 <div class="col-2">
-                  <input type="checkbox" id="formStar" class="stars">
+                  <input data-vo="star" type="checkbox" id="formStar" class="stars">
                   <label for="formStar">star</label>
                 </div>
                 <div class="col-2">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
-                    width="100%" height="41px"
-                    >
+                    width="100%" height="41px">
                     <image  x="5px" y="0px" width="40px" height="41px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAMAAABwfJv6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA3lBMVEUAAACUlJX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACTk5STk5SSkpORkZGPj5CPj5CSkpORkZKUlJWTk5SSkpOUlJWUlJWTk5STk5SUlJWTk5SUlJWUlJWUlJWUlJWUlJWTk5SUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJXf39+tra3R0dKlpaX5+fn////Dw8TY2Nny8vOcnJ20tLXs7Oy8vLzKystDHCW7AAAAO3RSTlMAAAABBw0TFxkaBA8YAxEKAhQOBvru1rB9fDk4AuWJHPmWmBPtWFqYmQayCra0BetZFJeI5Dd5rNLu+oPmLCsAAAABYktHRAJmC3xkAAAAB3RJTUUH5gwJDRwsaEZSWQAAAa1JREFUOMuNknd7gjAQxi9Vkagg4urA0Wpr1Vbr3iO2YPv9v1CDMg4xPrz8k9z9chMArFg8ISVlSuWklIjHQKRUOkORMunUVUxRaUiqEuayMr0iOXuBxVQqkBooVctRoXIaineD46QfU6U3pXp9BMrX85qW1wOtOR0p2Cg5FWkSfqyEEkt+4dJl8hR+ijrUcCJ7R2l01/HMdORI89Hg/eYxmMd7j0Ect6dhUMOeOCSigYlAc+LUfBxJfBU2Q5MQWIFwPFSG4FoFA+eCwiqSCtHBYjSwCKWQbb1xDtudbyxBGSF7xrVjhxVzD57KcI/AHdvyz/afIAw+wCPOyg52OO7/Zj9mAHwCoxIE7YjmmlnH/S8CKwaQKuJs2UHX1srcmseN56kCkFrdr9H6W51Ls5h9sFxHvcZB8uyHPDBnPIdzcNf+AjbYaCJww2U6Lzyw2TiB5NUDrVOgrXtwU7/BGSSt2+t7Bxdsd25xnbYHku6HmPvsgg+SnjB7qwcY5B31r2H9L++Pd0EyGNYvsfpwAGGQkNpojLHxqEbgKkiIMZnO5ovlcjGfTScGN9x5+gfFubL240Lv7AAAAABJRU5ErkJggg==" />
                   </svg>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col-12">
+                  <label for="mobile">휴대폰</label>
+                  <input data-vo="mobile" type="text" id="mobile" placeholder="휴대폰">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <label for="email">이메일 주소</label>
+                  <input data-vo="email" type="text" id="email" placeholder="이메일 주소">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
                   <label for="position">팀/직급</label>
-                  <input type="text" id="position" placeholder="팀/직급">
+                  <input data-vo="position" type="text" id="position" placeholder="팀/직급">
                   <button type="button" class="cancel">
                     <svg 
                       xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +105,7 @@
               <div class="row mt-3">
                 <div class="col-9 mobS-co-width1">
                   <label for="company">회사</label>
-                  <input type="text" id="company" placeholder="회사">
+                  <input data-vo="company" type="text" id="company" placeholder="회사" class="bg-light" readonly>
                   <button type="button" class="cancel">
                     <svg 
                       xmlns="http://www.w3.org/2000/svg"
@@ -107,44 +119,13 @@
                   <button data-vo="btnCustomerSearch" type="button" class="customer-search" data-toggle="modal" data-target="#csPop">검색</button>
                 </div>
               </div>
+
             </div>
       
             <hr class="content-hr"/>
       
             <div class="formik-body">
-              <h4>연락처</h4>
-              <div class="row mt-4">
-                <div class="col-3">
-                  <label for="phoneNum">휴대폰</label>
-                </div>
-                <div class="col-9">
-                  <input type="text" id="phoneNum" placeholder="휴대폰">
-                  <button type="button" class="cancel">
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      width="16px" height="16px">
-                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-3">
-                  <label for="email">이메일 주소</label>
-                </div>
-                <div class="col-9">
-                  <input type="text" id="email" placeholder="이메일 주소">
-                  <button type="button" class="cancel">
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      width="16px" height="16px">
-                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+              <h4>기타</h4>
               <div class="row mt-3">
                 <div class="col-3">
                   <label for="homeNum">유선전화</label>
@@ -210,67 +191,17 @@
                 </div>
               </div>
             </div>
-      
-            <hr class="content-hr"/>
-            
-            <div class="formik-body">
-              <div class="flex">
-                <h4>메모</h4>
-                <span>2021.04.30</span>
-              </div>
-              <div class="text-box mt-4">
-                <textarea name="" id="memo" rows="5"></textarea>
-                <button type="button" class="cancel">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    width="16px" height="16px">
-                    <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-      
+
             <div class="formik-footer">
               <button data-vo="btnSubmit" type="button" class="button button-primary">저장</button>
               <button data-vo="btnCancel" type="button" class="button button-third add-cancel">취소</button>
             </div>
           </form>
         </section>
-
-        <!-- 팝업 -->
-        <div class="modal" id="csPop" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form>
-                <div class="modal-body">
-                  <h3>고객사 검색</h3>
-                  <div class="search">
-                    <label>검색</label>
-                    <input type="text" id="popSearch" class="form-control">
-                    <button type="button">
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        width="20px" height="20px">
-                        <image  x="0px" y="0px" width="20px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAASFBMVEVYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/FYf/H////VqTsuAAAAFnRSTlMAEGWryGPsjeGwShnJaO8MqlX9W+43y9K/egAAAAFiS0dEFwvWmI8AAAAHdElNRQfmDAkOBwz4WAdSAAAAiElEQVQY062Q2xKEIAxDgQIWvF82//+pW3dVRBmfzAuZQybQKiXShqwlo1Um5/GTd2daCeEQWI7qlBUYVxPl4shrD67/tmb4vd8AcY9EwGyWwKmQQZuzCAkH2DJunksuT7bFD3b98zjZ8BjG+6o6N2CaE18X21Dbq3HK+KH5Pb7oEl8+qiTJfgGSGQlZrKh4AQAAAABJRU5ErkJggg==" />
-                      </svg>
-                    </button>
-                  </div>
-                  <span>고객사 회원을 검색하여 사용하세요.</span>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="button button-primary">확인</button>
-                  <button type="button" class="button button-secondary close">취소</button>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="modal-backdrop"></div>
-        </div>
     </div>
 
-    
+
     <script src="card-create.js"></script>
+    <script src="../company/popup-find.js"></script>
 </body>
 </html>
