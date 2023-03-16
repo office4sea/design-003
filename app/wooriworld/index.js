@@ -9,9 +9,11 @@ app.bindHtml('login-form', (view, vo)=> {
         if(!id || !pwd) return;
 
         app.bridge.memberVerify({id, pwd})
-            .then(_=> app.page.move('/view/main.html'))
-            .catch(e=> {
-                alert(e.message);
+            .then(isOkey=> {
+                if(isOkey) app.page.move('/view/main.html');
+                else {
+                    app.alert(app.bridge, '접근 권한 정보가 존재 하지 않습니다.');
+                }
             });
     });
 

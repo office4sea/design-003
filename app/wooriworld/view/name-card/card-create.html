@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!-- CSS only -->
+<link rel="stylesheet" href="../../../../libs/bootstrap/5.2.2/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/app-style.css">
+<!-- frame work -->
+<script src="../../../../libs/bromine.js"></script>
+<script src="../../br.init.js"></script>
+<title>우리세상</title>
+</head>
+<body>
+    <div id="wrap" class="wrap-content">
+        <header id="header">
+          <div class="back">
+            <svg 
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="12px" height="20px">
+              <image  x="0px" y="0px" width="12px" height="20px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUCAQAAAAT+RSaAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAUPLRtf9JsyAAAAZklEQVQY03WRQQqAQAhFf92n87ToPiGtgw7ZGeK1kJhGHV0I76HDqFDIiZMNZXwBD2uF4WYZ4P+oDjcR8CcSdlFgF0fGSFiF0axRMOjxYvXjpWrNVn2wUP12rVpiUFG4Sofy3NnQC8clIWnH1bJKAAAAAElFTkSuQmCC" />
+            </svg>
+          </div>
+          <h3>명함 입력</h3>
+        </header>
+
+        <section id="card-create" class="form-box">
+          <form action="#">
+            <div class="formik-header">
+              <div class="img-box">
+                <input type="file" id="file-upload">
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-8">
+                  <label for="name">이름</label>
+                  <input data-vo="name" type="text" id="name" placeholder="이름">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="col-2">
+                  <input data-vo="star" type="checkbox" id="formStar" class="stars">
+                  <label for="formStar">star</label>
+                </div>
+                <div class="col-2">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="100%" height="41px">
+                    <image  x="5px" y="0px" width="40px" height="41px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAMAAABwfJv6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA3lBMVEUAAACUlJX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACTk5STk5SSkpORkZGPj5CPj5CSkpORkZKUlJWTk5SSkpOUlJWUlJWTk5STk5SUlJWTk5SUlJWUlJWUlJWUlJWUlJWTk5SUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJWUlJXf39+tra3R0dKlpaX5+fn////Dw8TY2Nny8vOcnJ20tLXs7Oy8vLzKystDHCW7AAAAO3RSTlMAAAABBw0TFxkaBA8YAxEKAhQOBvru1rB9fDk4AuWJHPmWmBPtWFqYmQayCra0BetZFJeI5Dd5rNLu+oPmLCsAAAABYktHRAJmC3xkAAAAB3RJTUUH5gwJDRwsaEZSWQAAAa1JREFUOMuNknd7gjAQxi9Vkagg4urA0Wpr1Vbr3iO2YPv9v1CDMg4xPrz8k9z9chMArFg8ISVlSuWklIjHQKRUOkORMunUVUxRaUiqEuayMr0iOXuBxVQqkBooVctRoXIaineD46QfU6U3pXp9BMrX85qW1wOtOR0p2Cg5FWkSfqyEEkt+4dJl8hR+ijrUcCJ7R2l01/HMdORI89Hg/eYxmMd7j0Ect6dhUMOeOCSigYlAc+LUfBxJfBU2Q5MQWIFwPFSG4FoFA+eCwiqSCtHBYjSwCKWQbb1xDtudbyxBGSF7xrVjhxVzD57KcI/AHdvyz/afIAw+wCPOyg52OO7/Zj9mAHwCoxIE7YjmmlnH/S8CKwaQKuJs2UHX1srcmseN56kCkFrdr9H6W51Ls5h9sFxHvcZB8uyHPDBnPIdzcNf+AjbYaCJww2U6Lzyw2TiB5NUDrVOgrXtwU7/BGSSt2+t7Bxdsd25xnbYHku6HmPvsgg+SnjB7qwcY5B31r2H9L++Pd0EyGNYvsfpwAGGQkNpojLHxqEbgKkiIMZnO5ovlcjGfTScGN9x5+gfFubL240Lv7AAAAABJRU5ErkJggg==" />
+                  </svg>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <label for="mobile">휴대폰</label>
+                  <input data-vo="mobile" type="text" id="mobile" placeholder="휴대폰">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <label for="email">이메일 주소</label>
+                  <input data-vo="email" type="text" id="email" placeholder="이메일 주소">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <label for="position">팀/직급</label>
+                  <input data-vo="position" type="text" id="position" placeholder="팀/직급">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-9 mobS-co-width1">
+                  <label for="company">회사</label>
+                  <input data-vo="company" type="text" id="company" placeholder="회사" class="bg-light" readonly>
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="col-3 mobS-co-width2">
+                  <button data-vo="btnCustomerSearch" type="button" class="customer-search" data-toggle="modal" data-target="#csPop">검색</button>
+                </div>
+              </div>
+
+            </div>
+      
+            <hr class="content-hr"/>
+      
+            <div class="formik-body">
+              <h4>기타</h4>
+              <div class="row mt-3">
+                <div class="col-3">
+                  <label for="homeNum">유선전화</label>
+                </div>
+                <div class="col-9">
+                  <input type="text" id="homeNum" placeholder="유선전화">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-3">
+                  <label for="paxNum">팩스</label>
+                </div>
+                <div class="col-9">
+                  <input type="text" id="paxNum" placeholder="팩스">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3" style="align-items:baseline;">
+                <div class="col-3">
+                  <label for="address">주소</label>
+                </div>
+                <div class="col-9">
+                  <input type="text" id="address" placeholder="주소">
+                  <button type="button" class="cancel">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="16px" height="16px">
+                      <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                    </svg>
+                  </button>
+                  <div class="row mt-2">
+                    <div class="col-7 mobS-ad-width1">
+                      <input type="text" id="address2">
+                      <button type="button" class="cancel">
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          width="16px" height="16px">
+                          <image  opacity="0.302" x="0px" y="0px" width="16px" height="16px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmDAkQMSUlToAxAAAAnUlEQVQY03XPMWvCUABF4S++mAwJTtVAO0l2hywdhP74bl0edHENKA4pdPMN0ho7KEgFz3iGy7kZyC29qJDs9X7JUHlVuZF8SEFu/U9TWNgFrWdsjGoMtuYKp2ClxCiaSaJWjTK/zjQ6EZ0GVBMPmEhgEHU60XApC6aesNVq1Ga+zdFncm93uSTvwejLQnF38BjwY+ekNHV20Pt05A+c/CoTWrUdGwAAAABJRU5ErkJggg==" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="col-5 mobS-ad-width2">
+                      <button type="button" class="address-search">우편번호찾기</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="formik-footer">
+              <button data-vo="btnSubmit" type="button" class="button button-primary">저장</button>
+              <button data-vo="btnCancel" type="button" class="button button-third add-cancel">취소</button>
+            </div>
+          </form>
+        </section>
+    </div>
+
+
+    <script src="card-create.js"></script>
+    <script src="../company/popup-find.js"></script>
+</body>
+</html>
