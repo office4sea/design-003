@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graft 폼 컨트롤</title>
+    <link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+    <script src="../libs/graft/core/graft.js"></script>
+</head>
+<body>
+<script>
+Graft.import('../libs/graft/graft-init.js')
+.then(_=> Graft.import([
+    '../libs/graft/graft-ajax.js',
+    '../libs/graft/graft-popup.js',
+]))
+.then(_=> Graft.import([
+    'js/gnb/gnb-header.js',
+    'js/gnb/gnb-footer.js',
+    'js/html/form/form-billing.ctrl.js',
+    'js/html/form/form-cart.ctrl.js',
+]))
+.then(_=> Graft.import([
+    'js/html/form/form-billing.view.js',
+    'js/html/form/form-cart.view.js',
+]))
+.then(_=> gf.build())
+.then(({log, html, tag, view})=> {
+    // 헤더
+    html.insert(view.gnbHeader);
+    // 컨텐츠 바디
+    html.insert(tag.div({class:'container'}, [
+        tag.main([
+            tag.div({class:'py-5 text-center'}, [
+                tag.div({class:'row py-lg-5'}, [
+                    tag.div({class:'mx-auto'}, [
+                        tag.h1('Checkout form', {class:'fw-light'}),
+                        tag.p([
+                            '다음은 Gragt JS 양식 컨트롤로 구축된 예제 양식입니다.',
+                            '각 필수 양식 그룹에는 양식을 완료하지 않고 제출을 시도하여 트리거 될 수 있는 유효성 검사 상태가 있습니다.'
+                        ].join('<br/>'), {class:'lead text-body-secondary'}),
+                    ])
+                ])
+            ]),
+    
+            tag.div({class:'row g-5'}, [
+                view.formCart,
+                view.formBilling,
+            ])
+        ])
+    ]));
+    // 푸터
+    html.insert(view.gnbFooter);
+});
+</script>
+</body>
+</html>

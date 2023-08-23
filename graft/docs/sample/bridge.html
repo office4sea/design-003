@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graft 폼 컨트롤</title>
+    <link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+    <script src="../libs/graft/core/graft.js"></script>
+</head>
+<body>
+<script>
+Graft.import('../libs/graft/graft-init.js')
+.then(_=> Graft.import([
+    '../libs/graft/graft-ajax.js',
+    '../libs/graft/graft-popup.js',
+]))
+.then(_=> Graft.import([
+    'js/gnb/gnb-header.js',
+    'js/gnb/gnb-footer.js',
+    'js/html/bridge/bridge-main.ctrl.js',
+]))
+.then(_=> gf.build())
+.then(({log, html, tag, view, ctrl})=> {
+    // 헤더
+    html.insert(view.gnbHeader);
+    // 컨텐츠 바디
+    html.insert(tag.div({class:'container'}, [
+        tag.main([
+            tag.div({class:'py-5 text-center'}, [
+                tag.div({class:'row py-lg-5'}, [
+                    tag.div({class:'mx-auto'}, [
+                        tag.h1('Bridge example', {class:'fw-light'}),
+                        tag.p([
+                            '네이티브에 기능 요청을 위한 메시지 전송 예제 입니다.',
+                        ].join('<br/>'), {class:'lead text-body-secondary'}),
+                    ])
+                ])
+            ]),
+
+            tag.div(ctrl.bridgeMain, {class:'row g-5'}, [
+                tag.div({class:'col'}, [
+                    gf.tag.button('set_data', {dataBind:'setData', class:'btn btn-primary'}),
+                    gf.tag.button('get_data', {dataBind:'getData', class:'btn btn-primary ms-2'})
+                ]),
+            ])
+        ])
+    ]));
+    // 푸터
+    html.insert(view.gnbFooter);
+});
+</script>
+</body>
+</html>
