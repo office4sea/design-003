@@ -1,1 +1,4 @@
 node_modules
+
+# 프로젝트별 백업 하위폴더 예외 처리
+*/backup/*/

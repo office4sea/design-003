@@ -1,0 +1,91 @@
+body {
+    padding-bottom: 8rem;
+}
+
+header nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: .5rem;
+    width: 100%;
+    background: lightgray;
+}
+header ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+}
+header ul >li {
+    list-style: none;
+    padding: .5rem;
+}
+section >h2 {
+    padding-bottom: .5rem;
+    border-bottom: 2px solid gray;
+}
+*:focus {
+    background-color:lightblue !important;
+}
+
+.none {
+    display:none !important;
+}
+.color-list {
+    padding: 0;
+    margin: 0;
+}
+.color-list >li {
+    list-style: none;
+    padding: .2rem;
+}
+.color-list >li.red {
+    background-color: red;
+}
+.color-list >li.green {
+    background-color: green;
+}
+.color-list >li.blue {
+    background-color: blue;
+}
+
+/* 레이어팝업 */
+.layer-popup {
+    position:fixed; top:0; left:0;
+}
+.layer-popup .modal {
+    display:none; justify-content:center; flex-direction:column; align-items:center; width:100vw; height:100vh; background:rgba(0,0,0,.5); backdrop-filter:blur(2px);
+}
+.layer-popup .modal.active {
+    display:flex;
+}
+.layer-popup .modal-container {
+    position:relative; width:50%; background:white; padding:1rem;
+}
+.layer-popup .modal-header {
+    position:absolute; left:.5rem; top:.5rem; font-weight:bold;
+}
+.layer-popup .modal-body {
+    margin-top:2rem; max-height:80%; overflow-y:auto;
+}
+.layer-popup .modal-footer {
+    margin-top:1rem; padding-top:1rem; border-top:1px solid gray; text-align:right;
+}
+.layer-popup .modal-close {
+    position:absolute; right:.5rem; top:.5rem;
+}
+
+/* 주소검색 */
+
+.zipcode .addr-list {
+    padding:0; margin:0;
+}
+.zipcode .addr-list >li {
+    list-style:none; margin-top:.6rem; border-top:1px solid gray; padding-top:.6rem;
+}
+.zipcode .addr-list >li >a {
+    text-decoration:none; color:black;
+}
+.zipcode .addr-list >li .zip-code {
+    color:gray; font-size:10pt;
+}

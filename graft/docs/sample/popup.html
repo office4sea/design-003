@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graft 개발</title>
+    <link rel="stylesheet" href="../../libs/bootstrap/bootstrap.min.css">
+    <script src="../../libs/graft/core/graft.js"></script>
+</head>
+<body>
+<script>
+Graft.import('../../libs/graft/graft-init.js')
+.then(_=> Graft.import([
+    '../../libs/graft/graft-ajax.js',
+    '../../libs/graft/graft-popup.js',
+]))
+.then(_=> Graft.import([
+    '../js/gnb/gnb-header.js',
+    '../js/gnb/gnb-footer.js',
+    '../js/pages/form/form-main.ctrl.js',
+]))
+.then(_=> Graft.import([
+    '../js/pages/form/form-main.view.js',
+]))
+.then(_=> gf.build())
+.then(({log, html, tag, view})=> {
+    // 헤더
+    html.insert(view.gnbHeader);
+    // 푸터
+    html.insert(view.gnbFooter);
+});
+</script>
+</body>
+</html>
