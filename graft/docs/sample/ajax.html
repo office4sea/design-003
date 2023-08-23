@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graft 폼 컨트롤</title>
+    <link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+    <script src="../libs/graft/core/graft.js"></script>
+</head>
+<body>
+<script>
+Graft.import('../libs/graft/graft-init.js')
+.then(_=> Graft.import([
+    '../libs/graft/graft-ajax.js',
+    '../libs/graft/graft-popup.js',
+]))
+.then(_=> Graft.import([
+    'js/gnb/gnb-header.js',
+    'js/gnb/gnb-footer.js',
+    'js/html/ajax/ajax-main.ctrl.js',
+]))
+.then(_=> gf.build())
+.then(({log, html, tag, ctrl, view})=> {
+    // 헤더
+    html.insert(view.gnbHeader);
+    // 컨텐츠 바디
+    html.insert(tag.div({class:'container'}, [
+        tag.main(ctrl.ajaxMain, [
+            tag.div({class:'py-5 text-center'}, [
+                tag.div({class:'row py-lg-5'}, [
+                    tag.div({class:'mx-auto'}, [
+                        tag.h1('AJAX example', {class:'fw-light'}),
+                        tag.p([
+                            '비동기 통신을 이용한 데이터 요청 처리에 대한 예시 입니다.',
+                        ].join('<br/>'), {class:'lead text-body-secondary'}),
+                    ])
+                ])
+            ]),
+            // listData
+            tag.div({dataBind:'listData', class:'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'}),
+            // button groups
+            tag.div({class:'row mt-3'}, [
+                tag.div({class:'col'}, [
+                    tag.button('fetch data', {dataBind:'btnData', class:'btn btn-success w-100'})
+                ]),
+                tag.div({class:'col'}, [
+                    tag.button('fetch error', {dataBind:'btnError', class:'btn btn-danger w-100'})
+                ]),
+                tag.div({class:'col'}, [
+                    tag.button('fetch list', {dataBind:'btnList', class:'btn btn-primary w-100'})
+                ]),
+                tag.div({class:'col'}, [
+                    tag.button('list more', {dataBind:'btnListMore', class:'btn btn-outline-primary w-100', disabled:''})
+                ]),
+            ]),
+        ])
+    ]));
+    // 푸터
+    html.insert(view.gnbFooter);
+});
+</script>
+</body>
+</html>
