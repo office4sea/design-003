@@ -11,9 +11,9 @@ const gf= Graft.getInstance(gf=> {
     const useDebugger= gf.agent.isLocal|| gf.agent.isDev;
 
     // 웹 콘솔 디버거 추가
-    (useDebugger && gf.agent.isMobile)&& gf.log.addDebugger(root+ '/graft/docs/libs/_dev/eruda.js');
+    (useDebugger && gf.agent.isMobile)&& gf.log.addDebugger(root+ '/graft/docs/libs/etc/eruda.js');
 
-    useDebugger && Graft.import(root+ '/graft/docs/libs/_dev/graft-bridge.mock.js');
+    useDebugger && Graft.import(root+ '/graft/docs/libs/etc/graft-bridge.mock.js');
 
     // 네이티브 세팅
     gf.bridge.setNative(_=> {
@@ -36,4 +36,4 @@ const gf= Graft.getInstance(gf=> {
     gf.log.out('웹 콘솔 디버거 추가', gf.agent.isDev && gf.agent.isMobile);
 });
 
-// Graft.getInstance(_=> console.log('----싱글톤...------'));
+Graft.getInstance(_=> console.log('----싱글톤...------'));
