@@ -63,55 +63,198 @@
 
     <section class="readme usertext">
         <article><h1>Graft JS</h1>
-<p>Graft(접목, 이식) 스크립트</p>
+<p>Graft 스크립트</p>
+<p>DOM객체에 확장 된 기능을 이식 하여, 바인딩된 컨트롤객체를 핸들링 할 수 있는 라이브러리 입니다.</p>
 <h2>시작하기</h2>
-<p>HTML 문서의 <code>&lt;head&gt;</code>에 Graft JS를 추가 합니다.</p>
-<pre class="prettyprint source lang-html"><code>&lt;!doctype html>
-&lt;html lang=&quot;en&quot;>
-    &lt;head>
-        &lt;script src=&quot;graft.1.0.0.js&quot;>&lt;/script>
-    &lt;/head>
-&lt;/html>
+<p>HTML 문서의 <code>&lt;head&gt;</code>에 Graft JS를 추가 하며, 의존성 스크립트는 <code>Graft.import</code> 메소드를 이용하여 추가 합니다.
+<code>Graft.getInstance</code>를 통해 생성된 인스턴스의 <code>build</code>를 호출하여 어플리케이션을 실행 합니다.</p>
+<pre class="prettyprint source lang-html"><code>&lt;!-- html -->
+&lt;script src=&quot;graft.js&quot;>&lt;/script>
+&lt;script>
+Graft.import('graft-init.js')
+.then(_=> graft.build())
+.then(graft=> {
+    graft.html.insert(graft.tag.header('Hellow world!!'));
+});
+&lt;/script>
+</code></pre>
+<pre class="prettyprint source lang-js"><code>// graft-init.js
+const graft= Graft.getInstance(graft=> {
+    graft.log.out('초기 환경 설정');
+});
 </code></pre>
 <h2>구성요소</h2>
 <h2>브릿지</h2>
-<p>웹과 네이티브의 기능 요청에 대한 메시지를 주고 받는 역할을 합니다.
-웹에서는 <code>graft.bridge.postMessage</code> 메소드를 이용하여 네이티브에 기능 수행에 대한 요청 메시지를 전달 합니다.
-네이티브에서는 <code>Graft.postMessage</code> 기능을 호출 하여 기능 수행에 대한 결과에 대한 응답 메시지를 전달 합니다.
+<p>웹과 네이티브의 기능 요청에 대한 메시지를 주고 받는 역할을 합니다.</p>
+<p>웹에서는 <code>graft.bridge.postMessage</code> 메소드를 이용하여 네이티브에 기능 수행에 대한 요청 메시지를 전달 합니다.</p>
+<p>네이티브에서는 <code>Graft.postMessage</code> 기능을 호출 하여 기능 수행에 대한 결과에 대한 응답 메시지를 전달 합니다.
 응답에 대한 메시지는 웹에서 요청한 메시지의 <code>trid</code>값을 포함하여 전달 합니다.</p>
 <p><strong>메시지 구조</strong></p>
 <pre class="prettyprint source lang-json"><code>{
     // 메시지 거래를 위해 채번된 ID
     &quot;trid&quot;: &quot;w112233&quot;,
-    // 기능 요청 커맨드
-    &quot;command&quot;: &quot;&quot;,
-    // 기능 요청 시 전달값
+    // [옵션] 기능 요청 커맨드
+    &quot;command&quot;: &quot;get_data&quot;,
+    // [옵션] 기능 요청 시 전달값
     &quot;payload&quot;: {},
-    // 기능 수행 후 응답값
+    // [옵션] 기능 수행 후 응답값
     &quot;receive&quot;: {}
 }
 </code></pre>
-<ul>
-<li>trid: 메시지 거래를 위해 채번된 ID값으로</li>
-</ul>
 <p><strong>웹</strong></p>
-<pre class="prettyprint source lang-js"><code></code></pre>
-<h2>개발 도우미 툴</h2>
-<blockquote>
-<p><strong>eruda.js</strong> 브라우저 콘솔 디버깅용 툴</p>
-</blockquote>
-<blockquote>
-<p><strong>graft-bridge-mock.js</strong> 브릿지 네이티브 모깅용 툴</p>
-</blockquote>
+<pre class="prettyprint source lang-js"><code>// 네이티브 객체 세팅
+gf.bridge.setNative(_=> {
+    // ✨✨ 네이티브에와 통신할 브릿지 이름
+    const bridgeName= 'graftNative';
+
+    // IOS
+    if(window.webkit) {
+        return window.webkit.messageHandlers[bridgeName];
+    }
+    // AOS
+    if(window[bridgeName]) {
+        return window[bridgeName];
+    }
+    // MOCK
+    return gf.bridge.mock;
+});
+</code></pre>
+<p><strong>안드로이드</strong></p>
+<pre class="prettyprint source lang-kotlin"><code>// 브릿지 메시지 구조
+data class GraftMessage(
+    val trid: String,
+    val command: String?= null,
+    val payload: Map&lt;*, *>?= null,
+    val receive: Map&lt;*, *>?= null,
+)
+
+class MainActivity : AppCompatActivity() {
+    // ✨✨ 자바스크립트와 통신할 브릿지 이름
+    private val bridgeName= &quot;graftNative&quot;
+    private lateinit var webView: WebView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        webView = findViewById(R.id.web_view)
+        webView.apply { ... }
+
+        // ✨✨ 자바스크립트 브릿지 인터페이스 설정
+        webView.addJavascriptInterface(JavascriptBridge(this), bridgeName)
+        webView.loadUrl(&quot;http://localhost&quot;)
+    }
+
+    // 브릿지 메시지에 대한 응답 처리 함수
+    fun receiveBridgeMessage(message: String) {
+        Log.i(&quot;bridge_message::receiveBridgeMessage&quot;, message)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            // 자바스크립트의 Graft.postMessage() 함수 호출
+            webView.loadUrl(&quot;javascript:Graft.postMessage($message)&quot;)
+        },100)
+    }
+}
+
+class JavascriptBridge(private val mainActivity: MainActivity) {
+    private val mapper = jacksonObjectMapper()
+
+    // ✨✨ 웹에서 메시지 요청에 대한 처리
+    @JavascriptInterface
+    fun postMessage(msg: String) {
+        Log.i(&quot;postMessage&quot;, msg.toString())
+
+        val message= mapper.readValue&lt;GraftMessage>(msg)
+        val receive= when(message.command) {
+            &quot;get_data&quot;-> get_data(message)
+            else-> command_notfound(message)
+        }
+
+        mainActivity.receiveMessage(mapper.writeValueAsString(receive))
+    }
+
+    private fun get_data(message: GraftMessage): GraftMessage {
+        val receive: Map&lt;Any, Any> = mapOf(&quot;value&quot; to &quot;112233&quot;)
+        return GraftMessage(trid= message.trid, receive= receive)
+    }
+    private fun command_notfound(message: GraftMessage): GraftMessage {
+        val receive: Map&lt;Any, Any> = mapOf(
+            &quot;error&quot; to true,
+            &quot;value&quot; to &quot;존재하지 않는 커맨드 입니다.&quot;
+        )
+        return GraftMessage(trid= message.trid, receive= receive)
+    }
+}
+</code></pre>
+<p><strong>IOS</strong></p>
+<pre class="prettyprint source lang-swift"><code>// 메시지 핸들러를 받기 위한 설정
+override func viewDidLoad() {
+    // ✨✨ 자바스크립트와 통신할 브릿지 이름
+    let bridgeName= &quot;graftNative&quot;
+    let contentController = WKUserContentController()
+    let configuration = WKWebViewConfiguration()
+
+    // ✨✨ 브릿지 핸들러 설정
+    contentController.add(self, name: bridgeName)
+
+    configuration.userContentController = contentController
+    webView = WKWebView(frame: .zero, configuration: configuration)
+}
+
+// ✨✨ 웹에서 메시지 요청에 대한 처리
+extension ViewController: WKScriptMessageHandler {
+    func userContentController(
+        _ userContentController: WKUserContentController,
+        didReceive message: WKScriptMessage
+    ) {
+        if message.name == &quot;graftNative&quot; {
+            print(message.body)
+
+            let json = try? JSONSerialization.jsonObject(with: message.body, options: []) as? [String : Any]
+            let receiv = [
+                &quot;trid&quot;: json[&quot;trid&quot;]
+            ]
+
+            if json[&quot;command&quot;] == &quot;get_data&quot; {
+                receive[&quot;receive&quot;] = [
+                    &quot;value&quot;: &quot;112233&quot;
+                ]
+            }
+
+            // 자바스크립트의 Graft.postMessage() 함수 호출
+            self.webView.evaluateJavaScript(&quot;Graft.postMessage(\(receive))&quot;) { result, error in
+                guard error == nil else {
+                    print(error as Any)
+                    return
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<!--
+## 개발 도우미 툴
+
+> **eruda.js** 브라우저 콘솔 디버깅용 툴(오픈소스)
+
+> **graft-bridge-mock.js** 브릿지 네이티브 모깅용 툴
+
+> **graft.js.map** Graft JS 매핑 파일
+-->
 <h2>샘플 페이지</h2>
 <p><a href="sample/form.html">FORM 컨트롤</a></p>
 <p>레이어 팝업</p>
 <p>데이터(AJAX) 요청</p>
 <p>네이티브 브릿지</p>
-<h2>릴리즈 히스토리</h2>
-<blockquote>
-<p>1.0.0 최초 배포 빌드</p>
-</blockquote></article>
+<!--
+## 라이센스
+
+## 릴리즈
+
+> 1.0.0 최초 배포 빌드
+
+-->
+<h2>오픈소스</h2>
+<ul>
+<li><strong>eruda.js</strong>: https://github.com/liriliri/eruda</li>
+</ul></article>
     </section>
 
 
@@ -126,7 +269,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Aug 23 2023 13:20:44 GMT+0900 (대한민국 표준시) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Aug 24 2023 11:25:05 GMT+0900 (대한민국 표준시) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
