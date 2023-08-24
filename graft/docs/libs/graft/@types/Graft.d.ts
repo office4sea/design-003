@@ -302,6 +302,10 @@ type GraftLog= {
      */
     active(level?: 'debug'): void;
     /**
+     * 로그 새로고침
+     */
+    refresh(): void;
+    /**
      * 디버그 로그를 출력 합니다.
      * @param args 출력 전달 매개변수
      */
@@ -317,9 +321,4 @@ type GraftLog= {
      * @param color 컬러 코드
      */
     getLogger(label: string, color?: 'info'| 'primary'| 'danger'| '#000000'): (...optional: any[])=> void;
-    /**
-     * 브라우저용 디버거를 추가 합니다.
-     * @param url 디버거 스크립트 경로
-     */
-    addDebugger(url: string): void;
 };
